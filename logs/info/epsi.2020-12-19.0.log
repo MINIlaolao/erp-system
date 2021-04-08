@@ -1,0 +1,433 @@
+13:49:21.367 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.6.Final
+13:49:21.368 [restartedMain] INFO  net.kintex.epsi.EpsiApplication - Starting EpsiApplication using Java 14.0.1 on developer01deiMac.local with PID 1662 (/Users/developer01/Projects/epsi/build/classes/java/main started by developer01 in /Users/developer01/Projects/epsi)
+13:49:21.370 [restartedMain] INFO  net.kintex.epsi.EpsiApplication - No active profile set, falling back to default profiles: default
+13:49:21.419 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+13:49:21.419 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+13:49:22.795 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 34571 (http)
+13:49:22.802 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-34571"]
+13:49:22.803 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+13:49:22.803 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.39]
+13:49:22.866 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+13:49:22.866 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1446 ms
+13:49:23.510 [restartedMain] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+13:49:24.045 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+13:49:24.081 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+13:49:24.162 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/v2/api-docs', GET] with []
+13:49:24.163 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-resources', GET] with []
+13:49:24.163 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-resources/**', GET] with []
+13:49:24.163 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/ui', GET] with []
+13:49:24.163 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/security', GET] with []
+13:49:24.163 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-ui.html/**', GET] with []
+13:49:24.163 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/webjars/**', GET] with []
+13:49:24.182 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44d1c193, org.springframework.security.web.context.SecurityContextPersistenceFilter@25c2408c, org.springframework.security.web.header.HeaderWriterFilter@2ce2e752, org.springframework.web.filter.CorsFilter@7952e932, net.kintex.epsi.user.filter.JwtAuthenticationFilter@3399cacf, org.springframework.security.web.authentication.logout.LogoutFilter@699e7ed1, net.kintex.epsi.user.filter.AuthenticationFilter@5f847413, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1bb14668, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@8382176, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4609b65, org.springframework.security.web.access.ExceptionTranslationFilter@38da1911, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2307b4c0]
+13:49:24.268 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+13:49:24.295 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+13:49:24.355 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+13:49:24.356 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+13:49:24.356 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+13:49:24.356 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - Clear EntityHelper entityTableMap cache.
+13:49:24.480 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-34571"]
+13:49:24.494 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 34571 (http) with context path ''
+13:49:24.495 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+13:49:24.503 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+13:49:24.525 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+13:49:24.733 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: addUsingPOST_1
+13:49:24.739 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeUsingPOST_1
+13:49:24.740 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_1
+13:49:24.771 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+13:49:24.771 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+13:49:24.804 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_2
+13:49:24.830 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: addUsingPOST_2
+13:49:24.831 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteOneUsingPOST_1
+13:49:24.860 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllWonBidUsingGET_1
+13:49:24.895 [restartedMain] INFO  net.kintex.epsi.EpsiApplication - Started EpsiApplication in 3.896 seconds (JVM running for 4.995)
+13:49:25.217 [RMI TCP Connection(3)-192.168.0.101] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+13:49:25.217 [RMI TCP Connection(3)-192.168.0.101] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+13:49:25.219 [RMI TCP Connection(3)-192.168.0.101] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+13:49:25.254 [RMI TCP Connection(4)-192.168.0.101] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+13:49:26.087 [RMI TCP Connection(4)-192.168.0.101] INFO  javax.mail - Jakarta Mail version 1.6.5
+13:49:26.096 [RMI TCP Connection(4)-192.168.0.101] INFO  javax.mail - successfully loaded resource: /META-INF/javamail.default.providers
+13:49:26.097 [RMI TCP Connection(4)-192.168.0.101] INFO  javax.mail - Tables of loaded providers
+13:49:26.097 [RMI TCP Connection(4)-192.168.0.101] INFO  javax.mail - Providers Listed By Class Name: {com.sun.mail.smtp.SMTPTransport=javax.mail.Provider[TRANSPORT,smtp,com.sun.mail.smtp.SMTPTransport,Oracle], com.sun.mail.imap.IMAPSSLStore=javax.mail.Provider[STORE,imaps,com.sun.mail.imap.IMAPSSLStore,Oracle], com.sun.mail.pop3.POP3Store=javax.mail.Provider[STORE,pop3,com.sun.mail.pop3.POP3Store,Oracle], com.sun.mail.smtp.SMTPSSLTransport=javax.mail.Provider[TRANSPORT,smtps,com.sun.mail.smtp.SMTPSSLTransport,Oracle], com.sun.mail.imap.IMAPStore=javax.mail.Provider[STORE,imap,com.sun.mail.imap.IMAPStore,Oracle], com.sun.mail.pop3.POP3SSLStore=javax.mail.Provider[STORE,pop3s,com.sun.mail.pop3.POP3SSLStore,Oracle]}
+13:49:26.097 [RMI TCP Connection(4)-192.168.0.101] INFO  javax.mail - Providers Listed By Protocol: {imap=javax.mail.Provider[STORE,imap,com.sun.mail.imap.IMAPStore,Oracle], smtp=javax.mail.Provider[TRANSPORT,smtp,com.sun.mail.smtp.SMTPTransport,Oracle], pop3=javax.mail.Provider[STORE,pop3,com.sun.mail.pop3.POP3Store,Oracle], imaps=javax.mail.Provider[STORE,imaps,com.sun.mail.imap.IMAPSSLStore,Oracle], smtps=javax.mail.Provider[TRANSPORT,smtps,com.sun.mail.smtp.SMTPSSLTransport,Oracle], pop3s=javax.mail.Provider[STORE,pop3s,com.sun.mail.pop3.POP3SSLStore,Oracle]}
+13:49:26.097 [RMI TCP Connection(4)-192.168.0.101] INFO  javax.mail - successfully loaded resource: /META-INF/javamail.default.address.map
+13:51:08.100 [http-nio-34571-exec-1] ERROR c.a.d.pool.DruidAbstractDataSource - discard long time none received connection. , jdbcUrl : jdbc:mysql://8.129.6.121:53307/sppsi_test, jdbcUrl : jdbc:mysql://8.129.6.121:53307/sppsi_test, lastPacketReceivedIdleMillis : 102040
+13:51:08.200 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:08.352 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:08.378 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:11.119 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:11.120 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:11.127 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:11.275 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:11.276 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:11.283 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:12.399 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:12.400 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:12.408 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:12.521 [http-nio-34571-exec-3] DEBUG n.k.e.user.dao.UserDao.selectOneById - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_id` = ?
+13:51:12.522 [http-nio-34571-exec-3] DEBUG n.k.e.user.dao.UserDao.selectOneById - ==> Parameters: 1(Integer)
+13:51:12.529 [http-nio-34571-exec-3] DEBUG n.k.e.user.dao.UserDao.selectOneById - <==      Total: 1
+13:51:12.547 [http-nio-34571-exec-3] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getUser' parameter -1
+13:51:12.547 [http-nio-34571-exec-3] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:12.657 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:12.658 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:12.664 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:12.789 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_client`
+13:51:12.790 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - ==> Parameters: 
+13:51:12.800 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - <==      Total: 1
+13:51:12.801 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - ==>  Preparing: SELECT `id`,`name`,`contact`,`disabled` FROM `epsi_client` LIMIT ?
+13:51:12.802 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - ==> Parameters: 100(Integer)
+13:51:12.816 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - <==      Total: 100
+13:51:12.848 [http-nio-34571-exec-4] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyClient' parameter -1
+13:51:12.848 [http-nio-34571-exec-4] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:12.902 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:12.902 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:12.909 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:12.909 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:12.910 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:12.917 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:12.997 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_vendor`
+13:51:12.997 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - ==> Parameters: 
+13:51:13.005 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - <==      Total: 1
+13:51:13.006 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - ==>  Preparing: SELECT vendor_id, vendor_code, vendor_name, disabled FROM `epsi_vendor` order by vendor_code asc LIMIT ?
+13:51:13.008 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - ==> Parameters: 100(Integer)
+13:51:13.017 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - <==      Total: 48
+13:51:13.029 [http-nio-34571-exec-5] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyVendor' parameter -1
+13:51:13.029 [http-nio-34571-exec-5] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:13.036 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_exchange_rate`
+13:51:13.036 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - ==> Parameters: 
+13:51:13.043 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - <==      Total: 1
+13:51:13.044 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany - ==>  Preparing: SELECT `id`, `currency_code`, `currency_name`, `currency_symbol`, `exchange_rate`, `disabled` from `epsi_exchange_rate` order by disabled ASC LIMIT ?
+13:51:13.044 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany - ==> Parameters: 100(Integer)
+13:51:13.057 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany - <==      Total: 100
+13:51:13.069 [http-nio-34571-exec-6] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyExchangeRate' parameter -1
+13:51:13.069 [http-nio-34571-exec-6] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:16.438 [http-nio-34571-exec-7] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:16.439 [http-nio-34571-exec-7] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:16.446 [http-nio-34571-exec-7] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:16.541 [http-nio-34571-exec-7] DEBUG n.k.e.i.d.S.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM epsi_stage LEFT JOIN epsi_won_bid ewb ON ewb.won_number = epsi_stage.won_id LEFT JOIN epsi_vendor_sku evs ON evs.sku_id = `epsi_stage`.vendor_sku LEFT JOIN epsi_sku es ON es.id = evs.k_sku_id LEFT JOIN epsi_spu spu ON spu.spu_id = es.spu_id
+13:51:16.544 [http-nio-34571-exec-7] DEBUG n.k.e.i.d.S.selectOneOrMany_COUNT - ==> Parameters: 
+13:51:16.551 [http-nio-34571-exec-7] DEBUG n.k.e.i.d.S.selectOneOrMany_COUNT - <==      Total: 1
+13:51:16.552 [http-nio-34571-exec-7] DEBUG n.k.e.i.dao.StageDao.selectOneOrMany - ==>  Preparing: SELECT `epsi_stage`.imei, ewb.bid_id as `bidId`, evs.sku_text, epsi_stage.vendor_grade as `vendor_grade`, es.`attribute` ->> '$.color' as color, es.`attribute` ->> '$.capacity' as capacity, es.`attribute` ->> '$.model' as model, spu.spu_brand, spu.spu_name FROM epsi_stage LEFT JOIN epsi_won_bid ewb on ewb.won_number = epsi_stage.won_id LEFT JOIN epsi_vendor_sku evs on evs.sku_id = `epsi_stage`.vendor_sku LEFT JOIN epsi_sku es on es.id = evs.k_sku_id LEFT JOIN epsi_spu spu on spu.spu_id = es.spu_id LIMIT ?
+13:51:16.554 [http-nio-34571-exec-7] DEBUG n.k.e.i.dao.StageDao.selectOneOrMany - ==> Parameters: 20(Integer)
+13:51:16.561 [http-nio-34571-exec-7] DEBUG n.k.e.i.dao.StageDao.selectOneOrMany - <==      Total: 9
+13:51:16.573 [http-nio-34571-exec-7] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getAllStage' parameter -1
+13:51:16.573 [http-nio-34571-exec-7] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:20.999 [http-nio-34571-exec-8] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:21.000 [http-nio-34571-exec-8] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:21.007 [http-nio-34571-exec-8] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:21.093 [http-nio-34571-exec-8] DEBUG n.k.e.i.d.S.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM epsi_stage LEFT JOIN epsi_won_bid ewb ON ewb.won_number = epsi_stage.won_id LEFT JOIN epsi_vendor_sku evs ON evs.sku_id = `epsi_stage`.vendor_sku LEFT JOIN epsi_sku es ON es.id = evs.k_sku_id LEFT JOIN epsi_spu spu ON spu.spu_id = es.spu_id
+13:51:21.093 [http-nio-34571-exec-8] DEBUG n.k.e.i.d.S.selectOneOrMany_COUNT - ==> Parameters: 
+13:51:21.100 [http-nio-34571-exec-8] DEBUG n.k.e.i.d.S.selectOneOrMany_COUNT - <==      Total: 1
+13:51:21.100 [http-nio-34571-exec-8] DEBUG n.k.e.i.dao.StageDao.selectOneOrMany - ==>  Preparing: SELECT `epsi_stage`.imei, ewb.bid_id as `bidId`, evs.sku_text, epsi_stage.vendor_grade as `vendor_grade`, es.`attribute` ->> '$.color' as color, es.`attribute` ->> '$.capacity' as capacity, es.`attribute` ->> '$.model' as model, spu.spu_brand, spu.spu_name FROM epsi_stage LEFT JOIN epsi_won_bid ewb on ewb.won_number = epsi_stage.won_id LEFT JOIN epsi_vendor_sku evs on evs.sku_id = `epsi_stage`.vendor_sku LEFT JOIN epsi_sku es on es.id = evs.k_sku_id LEFT JOIN epsi_spu spu on spu.spu_id = es.spu_id LIMIT ?
+13:51:21.101 [http-nio-34571-exec-8] DEBUG n.k.e.i.dao.StageDao.selectOneOrMany - ==> Parameters: 20(Integer)
+13:51:21.111 [http-nio-34571-exec-8] DEBUG n.k.e.i.dao.StageDao.selectOneOrMany - <==      Total: 9
+13:51:21.123 [http-nio-34571-exec-8] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getAllStage' parameter -1
+13:51:21.123 [http-nio-34571-exec-8] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:28.797 [http-nio-34571-exec-9] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:28.797 [http-nio-34571-exec-9] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:28.804 [http-nio-34571-exec-9] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:28.892 [http-nio-34571-exec-9] DEBUG n.k.e.p.d.B.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_bid` AS eb LEFT JOIN `epsi_vendor` AS ev ON ev.`vendor_id` = eb.vendor_id LEFT JOIN epsi_won_bid AS ewb ON ewb.bid_id = eb.bid_id
+13:51:28.892 [http-nio-34571-exec-9] DEBUG n.k.e.p.d.B.selectOneOrMany_COUNT - ==> Parameters: 
+13:51:28.898 [http-nio-34571-exec-9] DEBUG n.k.e.p.d.B.selectOneOrMany_COUNT - <==      Total: 1
+13:51:28.899 [http-nio-34571-exec-9] DEBUG n.k.e.p.dao.BidDao.selectOneOrMany - ==>  Preparing: SELECT eb.`bid_id` AS `id`, eb.`bid_date` AS `bidDate`, ev.`vendor_name` AS vendor, ewb.`won_number` AS wonNumber, ewb.`won_date` AS wonDate, ewb.`amount` AS amount FROM `epsi_bid` as eb LEFT JOIN `epsi_vendor` AS ev ON ev.`vendor_id` = eb.vendor_id LEFT JOIN epsi_won_bid as ewb on ewb.bid_id = eb.bid_id order by eb.created_at desc LIMIT ?
+13:51:28.900 [http-nio-34571-exec-9] DEBUG n.k.e.p.dao.BidDao.selectOneOrMany - ==> Parameters: 20(Integer)
+13:51:28.907 [http-nio-34571-exec-9] DEBUG n.k.e.p.dao.BidDao.selectOneOrMany - <==      Total: 1
+13:51:28.919 [http-nio-34571-exec-9] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyBid' parameter -1
+13:51:28.919 [http-nio-34571-exec-9] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:30.114 [http-nio-34571-exec-10] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:30.114 [http-nio-34571-exec-10] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:30.121 [http-nio-34571-exec-10] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:30.193 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:30.193 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:30.200 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:30.209 [http-nio-34571-exec-10] DEBUG n.k.e.i.d.L.getLogisticsIdCodeList - ==>  Preparing: select kdn_logistics_id as kdnLogisticsId, kdn_logistics_name as kdnLogisticsName from hkerp_kdn_logistics where disabled = 0;
+13:51:30.209 [http-nio-34571-exec-10] DEBUG n.k.e.i.d.L.getLogisticsIdCodeList - ==> Parameters: 
+13:51:30.219 [http-nio-34571-exec-10] DEBUG n.k.e.i.d.L.getLogisticsIdCodeList - <==      Total: 4
+13:51:30.236 [http-nio-34571-exec-10] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getLogisticsList' parameter -1
+13:51:30.236 [http-nio-34571-exec-10] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:30.290 [http-nio-34571-exec-1] DEBUG n.k.e.p.d.W.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_won_bid` ewb LEFT JOIN `epsi_bid` eb ON eb.`bid_id` = ewb.`bid_id` LEFT JOIN `epsi_vendor` ev ON ev.`vendor_id` = eb.`vendor_id`
+13:51:30.291 [http-nio-34571-exec-1] DEBUG n.k.e.p.d.W.selectOneOrMany_COUNT - ==> Parameters: 
+13:51:30.300 [http-nio-34571-exec-1] DEBUG n.k.e.p.d.W.selectOneOrMany_COUNT - <==      Total: 1
+13:51:30.301 [http-nio-34571-exec-1] DEBUG n.k.e.p.d.WonBidDao.selectOneOrMany - ==>  Preparing: SELECT ewb.`won_number` as number, ewb.`won_date` as date, ewb.`amount`, ewb.`warehouse`, ewb.`exchange_rate` as `exchangeRate`, ewb.is_shipped as `isShipped`, ev.`vendor_name` as vendor, ewb.bid_id as `bidId` FROM `epsi_won_bid` ewb LEFT JOIN `epsi_bid` eb ON eb.`bid_id` = ewb.`bid_id` LEFT JOIN `epsi_vendor` ev ON ev.`vendor_id` = eb.`vendor_id` LIMIT ?
+13:51:30.302 [http-nio-34571-exec-1] DEBUG n.k.e.p.d.WonBidDao.selectOneOrMany - ==> Parameters: 20(Integer)
+13:51:30.311 [http-nio-34571-exec-1] DEBUG n.k.e.p.d.WonBidDao.selectOneOrMany - <==      Total: 1
+13:51:30.330 [http-nio-34571-exec-1] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getAllWonBid' parameter -1
+13:51:30.330 [http-nio-34571-exec-1] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:32.341 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:32.342 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:32.352 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:32.436 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.L.getKdnLogisticsByWonNumber - ==>  Preparing: select hkerp_logistics.logistics_number as `logisticsNumber`, hkl.kdn_logistics_code as `kdnLogisticsCode` from hkerp_logistics left join hkerp_kdn_logistics hkl on hkerp_logistics.kdn_logistics_id = hkl.kdn_logistics_id where hkerp_logistics.won_number = ?
+13:51:32.437 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.L.getKdnLogisticsByWonNumber - ==> Parameters: T000120DA1(String)
+13:51:32.446 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.L.getKdnLogisticsByWonNumber - <==      Total: 1
+13:51:33.004 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.L.selectShipperNameByCode - ==>  Preparing: select kdn_logistics_name from hkerp_kdn_logistics where kdn_logistics_code = ?
+13:51:33.005 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.L.selectShipperNameByCode - ==> Parameters: FEDEX_GJ(String)
+13:51:33.014 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.L.selectShipperNameByCode - <==      Total: 1
+13:51:33.034 [http-nio-34571-exec-2] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getLogisticsByWonNumber' parameter -1
+13:51:33.034 [http-nio-34571-exec-2] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:35.493 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:35.494 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:35.504 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:35.588 [http-nio-34571-exec-3] DEBUG n.k.e.p.dao.BidDao.selectOneDetail - ==>  Preparing: SELECT `b`.`bid_id` AS `id`, `b`.`bid_date` AS `date`, `b`.`exchange_rate` AS `exchangeRate`, JSON_OBJECT( 'id', v.`vendor_id`, 'name', v.`vendor_name`, 'code', v.`vendor_code` ) AS `vendor`, `b`.`currency` as `currencyCode`, JSON_OBJECT( 'id', `w`.`won_id`, 'number', `w`.`won_number`, 'date', `w`.`won_date`, 'amount', `w`.`amount`, 'virtualWarehouse', `w`.`stage`, 'isArrival', har.arrival_order_number, 'isShipped', hl.logistics_id, 'isPayment', pay_date ) AS `won` FROM `epsi_bid` AS `b` LEFT JOIN `epsi_vendor` AS `v` ON `b`.`vendor_id` = `v`.`vendor_id` LEFT JOIN `epsi_won_bid` AS `w` ON `b`.`bid_id` = `w`.`bid_id` LEFT JOIN hkerp_arrival_record har ON arrival_order_number = won_number LEFT JOIN hkerp_logistics hl ON w.won_number = hl.won_number LEFT JOIN epsi_payment_record epr on w.won_number = epr.won_number WHERE `b`.`bid_id` = ?;
+13:51:35.591 [http-nio-34571-exec-3] DEBUG n.k.e.p.dao.BidDao.selectOneDetail - ==> Parameters: 20201218001(String)
+13:51:35.599 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+13:51:35.600 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+13:51:35.601 [http-nio-34571-exec-3] DEBUG n.k.e.p.dao.BidDao.selectOneDetail - <==      Total: 1
+13:51:35.607 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+13:51:35.620 [http-nio-34571-exec-3] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getBidDetail' parameter -1
+13:51:35.620 [http-nio-34571-exec-3] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+13:51:35.703 [http-nio-34571-exec-4] DEBUG n.k.e.p.d.B.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM epsi_bid_record ebr LEFT JOIN epsi_vendor_sku evsku ON evsku.`sku_id` = ebr.`sku_id` LEFT JOIN epsi_sku esku ON esku.`id` = evsku.`k_sku_id` LEFT JOIN epsi_spu espu ON espu.`spu_id` = esku.`spu_id` WHERE ebr.bid_id LIKE CONCAT('%', ?, '%')
+13:51:35.704 [http-nio-34571-exec-4] DEBUG n.k.e.p.d.B.selectOneOrMany_COUNT - ==> Parameters: 20201218001(String)
+13:51:35.713 [http-nio-34571-exec-4] DEBUG n.k.e.p.d.B.selectOneOrMany_COUNT - <==      Total: 1
+13:51:35.714 [http-nio-34571-exec-4] DEBUG n.k.e.p.d.B.selectOneOrMany - ==>  Preparing: SELECT ebr.record_id as `id`, ebr.`bid_id` as `bidId`, ebr.`description`, ebr.`grade`, ebr.`quantity`, ebr.`bid_price` as bidPrice, ebr.`won_price` as wonPrice , ebr.bid_count_price as `bidCountPrice`, ebr.won_bid_count_price as `wonBidCountPrice`, esku.`attribute` ->> '$.color' as color, esku.`attribute` ->> '$.capacity' as capacity, espu.`spu_brand` as brand, espu.`spu_name` as modelName FROM epsi_bid_record ebr LEFT JOIN epsi_vendor_sku evsku ON evsku.`sku_id` = ebr.`sku_id` LEFT JOIN epsi_sku esku ON esku.`id` = evsku.`k_sku_id` LEFT JOIN epsi_spu espu ON espu.`spu_id` = esku.`spu_id` WHERE ebr.bid_id LIKE CONCAT('%', ?, '%') LIMIT ?
+13:51:35.715 [http-nio-34571-exec-4] DEBUG n.k.e.p.d.B.selectOneOrMany - ==> Parameters: 20201218001(String), 20(Integer)
+13:51:35.725 [http-nio-34571-exec-4] DEBUG n.k.e.p.d.B.selectOneOrMany - <==      Total: 6
+13:51:35.726 [http-nio-34571-exec-4] DEBUG n.k.e.p.d.B.selectCurrencySymbolByBidId - ==>  Preparing: SELECT currency_symbol FROM epsi_exchange_rate LEFT JOIN epsi_bid eb ON eb.exchange_rate = epsi_exchange_rate.exchange_rate WHERE bid_id = ?
+13:51:35.726 [http-nio-34571-exec-4] DEBUG n.k.e.p.d.B.selectCurrencySymbolByBidId - ==> Parameters: 20201218001(String)
+13:51:35.736 [http-nio-34571-exec-4] DEBUG n.k.e.p.d.B.selectCurrencySymbolByBidId - <==      Total: 1
+13:51:35.755 [http-nio-34571-exec-4] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrMany' parameter -1
+13:51:35.755 [http-nio-34571-exec-4] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:10:02.452 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:10:02.456 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:10:02.465 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:10:02.541 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:10:02.541 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:10:02.548 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:10:02.561 [http-nio-34571-exec-5] DEBUG n.k.e.user.dao.UserDao.selectOneById - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_id` = ?
+15:10:02.562 [http-nio-34571-exec-5] DEBUG n.k.e.user.dao.UserDao.selectOneById - ==> Parameters: 1(Integer)
+15:10:02.568 [http-nio-34571-exec-5] DEBUG n.k.e.user.dao.UserDao.selectOneById - <==      Total: 1
+15:10:02.581 [http-nio-34571-exec-5] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getUser' parameter -1
+15:10:02.581 [http-nio-34571-exec-5] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:10:02.629 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:10:02.629 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:10:02.636 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:10:02.723 [http-nio-34571-exec-6] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_client`
+15:10:02.723 [http-nio-34571-exec-6] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - ==> Parameters: 
+15:10:02.729 [http-nio-34571-exec-6] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - <==      Total: 1
+15:10:02.730 [http-nio-34571-exec-6] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - ==>  Preparing: SELECT `id`,`name`,`contact`,`disabled` FROM `epsi_client` LIMIT ?
+15:10:02.730 [http-nio-34571-exec-6] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - ==> Parameters: 100(Integer)
+15:10:02.737 [http-nio-34571-exec-6] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - <==      Total: 100
+15:10:02.748 [http-nio-34571-exec-6] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyClient' parameter -1
+15:10:02.748 [http-nio-34571-exec-6] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:10:02.935 [http-nio-34571-exec-7] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:10:02.935 [http-nio-34571-exec-7] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:10:02.942 [http-nio-34571-exec-7] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:10:02.943 [http-nio-34571-exec-8] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:10:02.943 [http-nio-34571-exec-8] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:10:02.949 [http-nio-34571-exec-8] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:10:03.025 [http-nio-34571-exec-7] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_exchange_rate`
+15:10:03.026 [http-nio-34571-exec-7] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - ==> Parameters: 
+15:10:03.034 [http-nio-34571-exec-7] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - <==      Total: 1
+15:10:03.034 [http-nio-34571-exec-7] DEBUG n.k.e.i.d.E.selectOneOrMany - ==>  Preparing: SELECT `id`, `currency_code`, `currency_name`, `currency_symbol`, `exchange_rate`, `disabled` from `epsi_exchange_rate` order by disabled ASC LIMIT ?
+15:10:03.034 [http-nio-34571-exec-7] DEBUG n.k.e.i.d.E.selectOneOrMany - ==> Parameters: 100(Integer)
+15:10:03.042 [http-nio-34571-exec-7] DEBUG n.k.e.i.d.E.selectOneOrMany - <==      Total: 100
+15:10:03.054 [http-nio-34571-exec-7] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyExchangeRate' parameter -1
+15:10:03.054 [http-nio-34571-exec-7] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:10:03.059 [http-nio-34571-exec-8] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_vendor`
+15:10:03.059 [http-nio-34571-exec-8] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - ==> Parameters: 
+15:10:03.064 [http-nio-34571-exec-8] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - <==      Total: 1
+15:10:03.065 [http-nio-34571-exec-8] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - ==>  Preparing: SELECT vendor_id, vendor_code, vendor_name, disabled FROM `epsi_vendor` order by vendor_code asc LIMIT ?
+15:10:03.065 [http-nio-34571-exec-8] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - ==> Parameters: 100(Integer)
+15:10:03.071 [http-nio-34571-exec-8] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - <==      Total: 48
+15:10:03.082 [http-nio-34571-exec-8] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyVendor' parameter -1
+15:10:03.082 [http-nio-34571-exec-8] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:10:36.041 [http-nio-34571-exec-9] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:10:36.042 [http-nio-34571-exec-9] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:10:36.049 [http-nio-34571-exec-9] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:10:36.123 [http-nio-34571-exec-9] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:10:36.123 [http-nio-34571-exec-9] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:10:36.130 [http-nio-34571-exec-9] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:10:36.138 [http-nio-34571-exec-9] DEBUG n.k.e.user.dao.UserDao.selectOneById - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_id` = ?
+15:10:36.138 [http-nio-34571-exec-9] DEBUG n.k.e.user.dao.UserDao.selectOneById - ==> Parameters: 1(Integer)
+15:10:36.145 [http-nio-34571-exec-9] DEBUG n.k.e.user.dao.UserDao.selectOneById - <==      Total: 1
+15:10:36.157 [http-nio-34571-exec-9] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getUser' parameter -1
+15:10:36.157 [http-nio-34571-exec-9] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:10:36.307 [http-nio-34571-exec-10] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:10:36.307 [http-nio-34571-exec-10] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:10:36.313 [http-nio-34571-exec-10] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:10:36.394 [http-nio-34571-exec-10] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_client`
+15:10:36.394 [http-nio-34571-exec-10] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - ==> Parameters: 
+15:10:36.400 [http-nio-34571-exec-10] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - <==      Total: 1
+15:10:36.401 [http-nio-34571-exec-10] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - ==>  Preparing: SELECT `id`,`name`,`contact`,`disabled` FROM `epsi_client` LIMIT ?
+15:10:36.401 [http-nio-34571-exec-10] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - ==> Parameters: 100(Integer)
+15:10:36.407 [http-nio-34571-exec-10] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - <==      Total: 100
+15:10:36.419 [http-nio-34571-exec-10] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyClient' parameter -1
+15:10:36.419 [http-nio-34571-exec-10] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:10:36.507 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:10:36.508 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:10:36.509 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:10:36.510 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:10:36.515 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:10:36.520 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:10:36.602 [http-nio-34571-exec-1] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_exchange_rate`
+15:10:36.603 [http-nio-34571-exec-1] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - ==> Parameters: 
+15:10:36.603 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_vendor`
+15:10:36.603 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - ==> Parameters: 
+15:10:36.609 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - <==      Total: 1
+15:10:36.610 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - ==>  Preparing: SELECT vendor_id, vendor_code, vendor_name, disabled FROM `epsi_vendor` order by vendor_code asc LIMIT ?
+15:10:36.611 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - ==> Parameters: 100(Integer)
+15:10:36.614 [http-nio-34571-exec-1] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - <==      Total: 1
+15:10:36.615 [http-nio-34571-exec-1] DEBUG n.k.e.i.d.E.selectOneOrMany - ==>  Preparing: SELECT `id`, `currency_code`, `currency_name`, `currency_symbol`, `exchange_rate`, `disabled` from `epsi_exchange_rate` order by disabled ASC LIMIT ?
+15:10:36.615 [http-nio-34571-exec-1] DEBUG n.k.e.i.d.E.selectOneOrMany - ==> Parameters: 100(Integer)
+15:10:36.618 [http-nio-34571-exec-2] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - <==      Total: 48
+15:10:36.627 [http-nio-34571-exec-1] DEBUG n.k.e.i.d.E.selectOneOrMany - <==      Total: 100
+15:10:36.630 [http-nio-34571-exec-2] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyVendor' parameter -1
+15:10:36.630 [http-nio-34571-exec-2] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:10:36.647 [http-nio-34571-exec-1] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyExchangeRate' parameter -1
+15:10:36.647 [http-nio-34571-exec-1] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:22:44.258 [http-nio-34571-exec-3] ERROR c.a.d.pool.DruidAbstractDataSource - discard long time none received connection. , jdbcUrl : jdbc:mysql://8.129.6.121:53307/sppsi_test, jdbcUrl : jdbc:mysql://8.129.6.121:53307/sppsi_test, lastPacketReceivedIdleMillis : 727611
+15:22:44.264 [http-nio-34571-exec-3] ERROR c.a.d.pool.DruidAbstractDataSource - discard long time none received connection. , jdbcUrl : jdbc:mysql://8.129.6.121:53307/sppsi_test, jdbcUrl : jdbc:mysql://8.129.6.121:53307/sppsi_test, lastPacketReceivedIdleMillis : 727634
+15:22:44.407 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:22:44.407 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:22:44.418 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:22:44.494 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:22:44.494 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:22:44.504 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:22:44.516 [http-nio-34571-exec-3] DEBUG n.k.e.user.dao.UserDao.selectOneById - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_id` = ?
+15:22:44.516 [http-nio-34571-exec-3] DEBUG n.k.e.user.dao.UserDao.selectOneById - ==> Parameters: 1(Integer)
+15:22:44.527 [http-nio-34571-exec-3] DEBUG n.k.e.user.dao.UserDao.selectOneById - <==      Total: 1
+15:22:44.546 [http-nio-34571-exec-3] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getUser' parameter -1
+15:22:44.546 [http-nio-34571-exec-3] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:22:44.657 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:22:44.657 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:22:44.667 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:22:44.753 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_client`
+15:22:44.753 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - ==> Parameters: 
+15:22:44.764 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - <==      Total: 1
+15:22:44.765 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - ==>  Preparing: SELECT `id`,`name`,`contact`,`disabled` FROM `epsi_client` LIMIT ?
+15:22:44.765 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - ==> Parameters: 100(Integer)
+15:22:44.776 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - <==      Total: 100
+15:22:44.795 [http-nio-34571-exec-4] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyClient' parameter -1
+15:22:44.795 [http-nio-34571-exec-4] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:22:44.977 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:22:44.977 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:22:44.987 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:22:44.988 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+15:22:44.988 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+15:22:44.998 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+15:22:45.073 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_vendor`
+15:22:45.073 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - ==> Parameters: 
+15:22:45.080 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_exchange_rate`
+15:22:45.080 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - ==> Parameters: 
+15:22:45.083 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - <==      Total: 1
+15:22:45.085 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - ==>  Preparing: SELECT vendor_id, vendor_code, vendor_name, disabled FROM `epsi_vendor` order by vendor_code asc LIMIT ?
+15:22:45.085 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - ==> Parameters: 100(Integer)
+15:22:45.087 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - <==      Total: 1
+15:22:45.087 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany - ==>  Preparing: SELECT `id`, `currency_code`, `currency_name`, `currency_symbol`, `exchange_rate`, `disabled` from `epsi_exchange_rate` order by disabled ASC LIMIT ?
+15:22:45.087 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany - ==> Parameters: 100(Integer)
+15:22:45.096 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - <==      Total: 48
+15:22:45.096 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany - <==      Total: 100
+15:22:45.109 [http-nio-34571-exec-6] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyExchangeRate' parameter -1
+15:22:45.109 [http-nio-34571-exec-6] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:22:45.114 [http-nio-34571-exec-5] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyVendor' parameter -1
+15:22:45.114 [http-nio-34571-exec-5] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+15:44:37.537 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+15:44:37.542 [SpringContextShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+15:44:37.546 [SpringContextShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+16:02:17.024 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.6.Final
+16:02:17.024 [restartedMain] INFO  net.kintex.epsi.EpsiApplication - Starting EpsiApplication using Java 14.0.1 on developer01deiMac.local with PID 3880 (/Users/developer01/Projects/epsi/build/classes/java/main started by developer01 in /Users/developer01/Projects/epsi)
+16:02:17.026 [restartedMain] INFO  net.kintex.epsi.EpsiApplication - No active profile set, falling back to default profiles: default
+16:02:17.069 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+16:02:17.069 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+16:02:18.455 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 34571 (http)
+16:02:18.463 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-34571"]
+16:02:18.463 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+16:02:18.464 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.39]
+16:02:18.522 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+16:02:18.522 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1452 ms
+16:02:19.159 [restartedMain] INFO  o.s.aop.framework.CglibAopProxy - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+16:02:19.709 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+16:02:19.746 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+16:02:19.832 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/v2/api-docs', GET] with []
+16:02:19.832 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-resources', GET] with []
+16:02:19.832 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-resources/**', GET] with []
+16:02:19.832 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/ui', GET] with []
+16:02:19.833 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/security', GET] with []
+16:02:19.833 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-ui.html/**', GET] with []
+16:02:19.833 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/webjars/**', GET] with []
+16:02:19.851 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a59576b, org.springframework.security.web.context.SecurityContextPersistenceFilter@3b87d218, org.springframework.security.web.header.HeaderWriterFilter@39de7e54, org.springframework.web.filter.CorsFilter@4d429011, net.kintex.epsi.user.filter.JwtAuthenticationFilter@63137084, org.springframework.security.web.authentication.logout.LogoutFilter@7863a3f3, net.kintex.epsi.user.filter.AuthenticationFilter@4c6a458b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@78387afe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4dfb6566, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@352d4e6d, org.springframework.security.web.access.ExceptionTranslationFilter@8383e20, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@276d695a]
+16:02:19.929 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+16:02:19.954 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+16:02:20.008 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+16:02:20.008 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+16:02:20.008 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+16:02:20.009 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - Clear EntityHelper entityTableMap cache.
+16:02:20.134 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-34571"]
+16:02:20.149 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 34571 (http) with context path ''
+16:02:20.150 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+16:02:20.158 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+16:02:20.179 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+16:02:20.381 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: addUsingPOST_1
+16:02:20.387 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeUsingPOST_1
+16:02:20.387 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_1
+16:02:20.416 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+16:02:20.416 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+16:02:20.452 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_2
+16:02:20.480 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: addUsingPOST_2
+16:02:20.481 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: deleteOneUsingPOST_1
+16:02:20.513 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAllWonBidUsingGET_1
+16:02:20.547 [restartedMain] INFO  net.kintex.epsi.EpsiApplication - Started EpsiApplication in 3.842 seconds (JVM running for 4.354)
+16:02:20.704 [RMI TCP Connection(6)-192.168.0.101] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+16:02:20.704 [RMI TCP Connection(6)-192.168.0.101] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+16:02:20.705 [RMI TCP Connection(6)-192.168.0.101] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+16:02:20.726 [RMI TCP Connection(5)-192.168.0.101] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+16:02:21.036 [RMI TCP Connection(5)-192.168.0.101] INFO  javax.mail - Jakarta Mail version 1.6.5
+16:02:21.047 [RMI TCP Connection(5)-192.168.0.101] INFO  javax.mail - successfully loaded resource: /META-INF/javamail.default.providers
+16:02:21.048 [RMI TCP Connection(5)-192.168.0.101] INFO  javax.mail - Tables of loaded providers
+16:02:21.048 [RMI TCP Connection(5)-192.168.0.101] INFO  javax.mail - Providers Listed By Class Name: {com.sun.mail.smtp.SMTPTransport=javax.mail.Provider[TRANSPORT,smtp,com.sun.mail.smtp.SMTPTransport,Oracle], com.sun.mail.imap.IMAPSSLStore=javax.mail.Provider[STORE,imaps,com.sun.mail.imap.IMAPSSLStore,Oracle], com.sun.mail.pop3.POP3Store=javax.mail.Provider[STORE,pop3,com.sun.mail.pop3.POP3Store,Oracle], com.sun.mail.smtp.SMTPSSLTransport=javax.mail.Provider[TRANSPORT,smtps,com.sun.mail.smtp.SMTPSSLTransport,Oracle], com.sun.mail.imap.IMAPStore=javax.mail.Provider[STORE,imap,com.sun.mail.imap.IMAPStore,Oracle], com.sun.mail.pop3.POP3SSLStore=javax.mail.Provider[STORE,pop3s,com.sun.mail.pop3.POP3SSLStore,Oracle]}
+16:02:21.048 [RMI TCP Connection(5)-192.168.0.101] INFO  javax.mail - Providers Listed By Protocol: {imap=javax.mail.Provider[STORE,imap,com.sun.mail.imap.IMAPStore,Oracle], smtp=javax.mail.Provider[TRANSPORT,smtp,com.sun.mail.smtp.SMTPTransport,Oracle], pop3=javax.mail.Provider[STORE,pop3,com.sun.mail.pop3.POP3Store,Oracle], imaps=javax.mail.Provider[STORE,imaps,com.sun.mail.imap.IMAPSSLStore,Oracle], smtps=javax.mail.Provider[TRANSPORT,smtps,com.sun.mail.smtp.SMTPSSLTransport,Oracle], pop3s=javax.mail.Provider[STORE,pop3s,com.sun.mail.pop3.POP3SSLStore,Oracle]}
+16:02:21.048 [RMI TCP Connection(5)-192.168.0.101] INFO  javax.mail - successfully loaded resource: /META-INF/javamail.default.address.map
+16:07:34.747 [http-nio-34571-exec-1] ERROR c.a.d.pool.DruidAbstractDataSource - discard long time none received connection. , jdbcUrl : jdbc:mysql://8.129.6.121:53307/sppsi_test, jdbcUrl : jdbc:mysql://8.129.6.121:53307/sppsi_test, lastPacketReceivedIdleMillis : 313741
+16:07:34.848 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+16:07:34.999 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+16:07:35.025 [http-nio-34571-exec-1] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+16:07:37.706 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+16:07:37.707 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+16:07:37.715 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+16:07:37.863 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+16:07:37.864 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+16:07:37.872 [http-nio-34571-exec-2] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+16:07:39.057 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+16:07:39.057 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+16:07:39.066 [http-nio-34571-exec-3] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+16:07:39.175 [http-nio-34571-exec-3] DEBUG n.k.e.user.dao.UserDao.selectOneById - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_id` = ?
+16:07:39.177 [http-nio-34571-exec-3] DEBUG n.k.e.user.dao.UserDao.selectOneById - ==> Parameters: 1(Integer)
+16:07:39.185 [http-nio-34571-exec-3] DEBUG n.k.e.user.dao.UserDao.selectOneById - <==      Total: 1
+16:07:39.204 [http-nio-34571-exec-3] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getUser' parameter -1
+16:07:39.204 [http-nio-34571-exec-3] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+16:07:39.314 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+16:07:39.315 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+16:07:39.322 [http-nio-34571-exec-4] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+16:07:39.459 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_client`
+16:07:39.460 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - ==> Parameters: 
+16:07:39.468 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.C.selectOneOrMany_COUNT - <==      Total: 1
+16:07:39.469 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - ==>  Preparing: SELECT `id`,`name`,`contact`,`disabled` FROM `epsi_client` LIMIT ?
+16:07:39.470 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - ==> Parameters: 100(Integer)
+16:07:39.486 [http-nio-34571-exec-4] DEBUG n.k.e.s.d.ClientDao.selectOneOrMany - <==      Total: 100
+16:07:39.505 [http-nio-34571-exec-4] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyClient' parameter -1
+16:07:39.505 [http-nio-34571-exec-4] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+16:07:39.569 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+16:07:39.569 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+16:07:39.577 [http-nio-34571-exec-5] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+16:07:39.577 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==>  Preparing: SELECT `user_id`, `user_account`, `user_password`, `name`, `access`, `disabled`, `created_at`, `created_by`, `updated_at`, `updated_by` FROM `epsi_user` WHERE `disabled` = 0 AND `user_account` = ?
+16:07:39.577 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - ==> Parameters: test(String)
+16:07:39.584 [http-nio-34571-exec-6] DEBUG n.k.e.u.d.UserDao.selectOneByAccount - <==      Total: 1
+16:07:39.663 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_vendor`
+16:07:39.664 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - ==> Parameters: 
+16:07:39.670 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor_COUNT - <==      Total: 1
+16:07:39.671 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - ==>  Preparing: SELECT count(0) FROM `epsi_exchange_rate`
+16:07:39.671 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - ==> Parameters: 
+16:07:39.671 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - ==>  Preparing: SELECT vendor_id, vendor_code, vendor_name, disabled FROM `epsi_vendor` order by vendor_code asc LIMIT ?
+16:07:39.673 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - ==> Parameters: 100(Integer)
+16:07:39.677 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany_COUNT - <==      Total: 1
+16:07:39.678 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany - ==>  Preparing: SELECT `id`, `currency_code`, `currency_name`, `currency_symbol`, `exchange_rate`, `disabled` from `epsi_exchange_rate` order by disabled ASC LIMIT ?
+16:07:39.678 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany - ==> Parameters: 100(Integer)
+16:07:39.682 [http-nio-34571-exec-5] DEBUG n.k.e.i.d.V.selectOneOrManyVendor - <==      Total: 48
+16:07:39.691 [http-nio-34571-exec-6] DEBUG n.k.e.i.d.E.selectOneOrMany - <==      Total: 100
+16:07:39.694 [http-nio-34571-exec-5] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyVendor' parameter -1
+16:07:39.694 [http-nio-34571-exec-5] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+16:07:39.704 [http-nio-34571-exec-6] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - returnType:method 'getOneOrManyExchangeRate' parameter -1
+16:07:39.704 [http-nio-34571-exec-6] INFO  n.k.e.c.h.ResponseResultHandlerAdvice - converterType:class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+17:49:59.672 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+17:49:59.678 [SpringContextShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+17:49:59.680 [SpringContextShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed

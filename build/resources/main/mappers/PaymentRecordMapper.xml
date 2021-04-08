@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.purchasing.dao.PaymentRecordDao">
+    <resultMap id="BaseResultMap" type="com.kintexgroup.hkpsi.purchasing.entity.PaymentRecord">
+        <id column="won_number" jdbcType="VARCHAR" property="wonNumber"/>
+        <result column="pay_date" jdbcType="VARCHAR" property="payDate"/>
+        <result column="amount_payable" jdbcType="DECIMAL" property="amountPayable"/>
+        <result column="use_balance" jdbcType="DECIMAL" property="useBalance"/>
+        <result column="amount_paid" jdbcType="DECIMAL" property="amountPaid"/>
+        <result column="operator" jdbcType="INTEGER" property="operator"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Fri Dec 04 10:28:22 CST 2020.-->
+        won_number, pay_date, amount_payable, use_balance, amount_paid, `operator`
+    </sql>
+    <sql id="Base_if_Column_List">
+        <trim suffixOverrides=",">
+            <if test="wonNumber != null">
+                won_number,
+            </if>
+            <if test="payDate != null">
+                pay_date,
+            </if>
+            <if test="amountPayable != null">
+                amount_payable,
+            </if>
+            <if test="useBalance != null">
+                use_balance,
+            </if>
+            <if test="amountPaid != null">
+                amount_paid,
+            </if>
+            <if test="operator != null">
+                `operator`,
+            </if>
+        </trim>
+    </sql>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated generated on Fri Dec 04 10:28:22 CST 2020.-->
+        update hkpsi_payment_record
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="pay_date = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.payDate != null">
+                        when won_number = #{item.wonNumber,jdbcType=VARCHAR} then #{item.payDate,jdbcType=DATE}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="amount_payable = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.amountPayable != null">
+                        when won_number = #{item.wonNumber,jdbcType=VARCHAR} then #{item.amountPayable,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="use_balance = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.useBalance != null">
+                        when won_number = #{item.wonNumber,jdbcType=VARCHAR} then #{item.useBalance,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="amount_paid = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.amountPaid != null">
+                        when won_number = #{item.wonNumber,jdbcType=VARCHAR} then #{item.amountPaid,jdbcType=DECIMAL}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`operator` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.operator != null">
+                        when won_number = #{item.wonNumber,jdbcType=VARCHAR} then #{item.operator,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where won_number in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.wonNumber,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated generated on Fri Dec 04 10:28:22 CST 2020.-->
+        insert into hkpsi_payment_record
+            (won_number, pay_date, amount_payable, use_balance, amount_paid, `operator`)
+            values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.wonNumber,jdbcType=VARCHAR}, #{item.payDate,jdbcType=DATE}, #{item.amountPayable,jdbcType=DECIMAL},
+             #{item.useBalance,jdbcType=DECIMAL}, #{item.amountPaid,jdbcType=DECIMAL},
+             #{item.operator,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+
+    <resultMap id="selectMap" type="com.kintexgroup.hkpsi.purchasing.model.PaymentRecordModel">
+        <result column="currency_symbol" property="currencySymbol"/>
+        <result column="exchange_rate" property="exchangeRate"/>
+        <result column="won_number" property="wonNumber"/>
+        <result column="pay_date" property="payDate" javaType="String"/>
+        <result column="amount_payable" property="amountPayable"/>
+        <result column="use_balance" property="useBalance"/>
+        <result column="amount_paid" property="amountPaid"/>
+    </resultMap>
+    <select id="selectOneOrMany" resultMap="selectMap">
+        SELECT epr.won_number,
+               epr.pay_date ,
+               epr.amount_payable,
+               epr.use_balance,
+               epr.amount_paid,
+               eer.currency_symbol,
+               eer.exchange_rate
+        FROM hkpsi_payment_record epr
+                 LEFT JOIN hkpsi_won_bid ewb ON epr.won_number = ewb.won_number
+                 LEFT JOIN hkpsi_exchange_rate eer ON eer.exchange_rate = ewb.exchange_rate
+        <where>
+            <if test="wonNumber != null and wonNumber != ''">
+                AND epr.won_number LIKE CONCAT('%', #{wonNumber,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="payDate != null">
+                AND epr.pay_date BETWEEN DATE_FORMAT(#{payDate,jdbcType=TIMESTAMP}, '%Y-%m-%d')
+            </if>
+            <if test="amountPayable != null">
+                AND epr.amount_payable LIKE CONCAT('%', #{amountPayable,jdbcType=DOUBLE}, '%')
+            </if>
+            <if test="useBalance != null">
+                AND epr.use_balance LIKE CONCAT('%', #{useBalance,jdbcType=DOUBLE}, '%')
+            </if>
+            <if test="amountPaid != null">
+                AND epr.amount_paid LIKE CONCAT('%', #{amountPaid,jdbcType=DOUBLE}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

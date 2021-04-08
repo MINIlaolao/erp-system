@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.sales.dao.SaleOrderDao">
+    <resultMap id="SaleOrder" type="com.kintexgroup.hkpsi.sales.entity.SaleOrder">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="client_id" jdbcType="INTEGER" property="clientId"/>
+        <result column="salesman" jdbcType="VARCHAR" property="salesman"/>
+        <result column="count_price" jdbcType="DECIMAL" property="countPrice"/>
+        <result column="handling_charge" jdbcType="DECIMAL" property="handingCharge"/>
+        <result column="deposit" jdbcType="DECIMAL" property="deposit"/>
+        <result column="other_price" jdbcType="DECIMAL" property="otherPrice"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="pay_money_date" jdbcType="TIMESTAMP" property="payMoneyDate"/>
+        <result column="date" jdbcType="TIMESTAMP" property="date"/>
+        <result column="disabled" jdbcType="TINYINT" property="disabled"/>
+        <result column="exchange_rate" jdbcType="DOUBLE" property="exchangeRate"/>
+    </resultMap>
+    <update id="update" parameterType="com.kintexgroup.hkpsi.sales.entity.SaleOrder">
+        UPDATE `hkpsi_sale_order`
+        <set>
+            <if test="clientId != null">
+                `client_id` = #{clientId,jdbcType=INTEGER},
+            </if>
+            <if test="salesman != null">
+                `salesman` = #{salesman,jdbcType=VARCHAR},
+            </if>
+            <if test="countPrice != null">
+                `count_price` = #{countPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="handingCharge != null">
+                `handling_charge` = #{handingCharge,jdbcType=DECIMAL},
+            </if>
+            <if test="deposit != null">
+                `deposit` = #{deposit,jdbcType=DECIMAL},
+            </if>
+            <if test="otherPrice != null">
+                `other_price` = #{otherPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="remark != null">
+                `remark`= #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="payMoneyDate != null">
+                `pay_money_date` = #{payMoneyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="date != null">
+                `date` = #{date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="disabled != null">
+                `disabled` = #{disabled,jdbcType=TINYINT},
+            </if>
+            `updated_by` = #{updatedBy,jdbcType=INTEGER}
+        </set>
+        WHERE `id` = #{id,jdbcType=BIGINT}
+    </update>
+
+    <insert id="create"
+            keyColumn="id"
+            keyProperty="id"
+            useGeneratedKeys="true"
+            parameterType="com.kintexgroup.hkpsi.sales.entity.SaleOrder">
+        INSERT INTO `hkpsi_sale_order`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            `id`,
+            `client_id`, `salesman`, `count_price`, `handling_charge`,
+            <if test="deposit != null">
+                `deposit`,
+            </if>
+            `other_price`,
+            <if test="remark != null">
+                `remark`,
+            </if>
+            <if test="payMoneyDate != null">
+                `pay_money_date`,
+            </if>
+            `date`,
+            <if test="disabled != null">
+                `disabled`,
+            </if>
+            <if test="exchangeRate != null">
+                `exchange_rate`,
+            </if>
+            created_by, updated_by,
+        </trim>
+        values
+        <trim prefix="(" suffix=")">
+            #{id,jdbcType=VARCHAR},
+            #{clientId,jdbcType=INTEGER},
+            #{salesman,jdbcType=VARCHAR},
+            #{countPrice,jdbcType=DECIMAL},
+            #{handingCharge,jdbcType=DECIMAL},
+            <if test="deposit != null">
+                #{deposit,jdbcType=DECIMAL},
+            </if>
+            #{otherPrice,jdbcType=DECIMAL},
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="payMoneyDate != null">
+                #{payMoneyDate,jdbcType=TIMESTAMP},
+            </if>
+            #{date,jdbcType=TIMESTAMP},
+            <if test="disabled != null">
+                #{disabled,jdbcType=TINYINT},
+            </if>
+            <if test="exchangeRate != null">
+                #{exchangeRate,jdbcType=DOUBLE},
+            </if>
+            #{createdBy,jdbcType=INTEGER},
+            #{updatedBy,jdbcType=INTEGER}
+        </trim>
+    </insert>
+    <select id="selectOne" parameterType="java.lang.String" resultMap="SaleOrder">
+        SELECT `id`,
+               `client_id`,
+               `salesman`,
+               `count_price`,
+               `handling_charge`,
+               `deposit`,
+               `other_price`,
+               `remark`,
+               `pay_money_date`,
+               `date`,
+               `disabled`
+        FROM `hkpsi_sale_order`
+        WHERE id = #{id,jdbcType=BIGINT}
+        LIMIT 1
+    </select>
+    <resultMap id="SaleOrderVO" type="com.kintexgroup.hkpsi.sales.model.SaleOrderVO">
+        <id column="id" property="id"/>
+        <result column="name" property="clientName"/>
+        <result column="salesman" property="salesman"/>
+        <result column="count_price" property="countPrice"/>
+        <result column="handling_charge" property="handingCharge"/>
+        <result column="deposit" property="deposit"/>
+        <result column="other_price" property="otherPrice"/>
+        <result column="remark" property="remark"/>
+        <result column="pay_money_date" property="payMoneyDate" jdbcType="TIMESTAMP"
+                javaType="String"/>
+        <result column="date" property="date" jdbcType="TIMESTAMP" javaType="String"/>
+        <result column="clientNumber" property="clientNumber"/>
+        <result column="exchange_rate" property="exchangeRate"/>
+        <result column="currency_symbol" property="currencySymbol"/>
+    </resultMap>
+    <select id="selectAll" resultMap="SaleOrderVO">
+        SELECT eso.`id`,
+               count_price,
+               handling_charge,
+               remark,
+               deposit,
+               other_price,
+               pay_money_date,
+               salesman,
+               date,
+               ec.name    AS `clientName`,
+               ec.contact AS `clientNumber`
+        FROM `hkpsi_sale_order` AS eso
+                 LEFT JOIN hkpsi_client ec ON eso.client_id = ec.id
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE
+        FROM `hkpsi_sale_order`
+        WHERE `id` = #{id,jdbcType=BIGINT}
+    </delete>
+    <select id="checkId" resultType="java.lang.Integer">
+        SELECT count(id)
+        FROM `hkpsi_sale_order`
+        WHERE id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectOneOrMany" parameterType="com.kintexgroup.hkpsi.sales.model.SaleOrderSearchPageDTO"
+            resultMap="SaleOrderVO">
+        SELECT eso.`id`,
+               eso.`salesman`,
+               eso.`date`,
+               eso.`pay_money_date`,
+               ec.`name`,
+               ec.`contact` as `clientNumber`,
+               eso.`count_price`,
+               eso.`deposit`,
+               eso.`exchange_rate`,
+               eso.`handling_charge`,
+               eso.`other_price`,
+               eso.`remark`,
+               eer.currency_symbol
+        FROM `hkpsi_sale_order` AS eso
+                 LEFT JOIN hkpsi_client ec ON eso.client_id = ec.id
+                 LEFT JOIN hkpsi_currency eer ON eso.exchange_rate = eer.exchange_rate
+        <where>
+            <if test="id != null and id != ''">
+                AND eso.`id` LIKE CONCAT('%', #{id,jdbcType=BIGINT}, '%')
+            </if>
+            <if test="salesman != null and salesman != ''">
+                AND eso.`salesman` LIKE CONCAT('%', #{salesman,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="date != null">
+                AND eso.`date` between DATE_FORMAT(#{date[0]}, '%Y-%m-%d %H:%i:%s')
+                    AND DATE_FORMAT(#{date[1]}, '%Y-%m-%d %H:%i:%s')
+            </if>
+            <if test="payMoneyDate != null">
+                AND eso.`pay_money_date` between DATE_FORMAT(#{payMoneyDate[0]}, '%Y-%m-%d %H:%i:%s')
+                    AND DATE_FORMAT(#{payMoneyDate[1]}, '%Y-%m-%d %H:%i:%s')
+            </if>
+            <if test="clientName != null and clientName != ''">
+                AND ec.`name` LIKE CONCAT('%', #{clientName,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="countPrice != null and countPrice != ''">
+                AND eso.`count_price` LIKE CONCAT('%', #{countPrice,jdbcType=DECIMAL}, '%')
+            </if>
+            <if test="deposit != null and deposit != ''">
+                AND eso.`deposit` LIKE CONCAT('%', #{deposit,jdbcType=DECIMAL}, '%')
+            </if>
+            <if test="handingCharge != null and handingCharge != ''">
+                AND eso.`handling_charge` LIKE CONCAT('%', #{handingCharge,jdbcType=DECIMAL}, '%')
+            </if>
+            <if test="otherPrice != null and otherPrice != ''">
+                AND eso.`other_price` LIKE CONCAT('%', #{otherPrice,jdbcType=DECIMAL}, '%')
+            </if>
+            <if test="remark != null and remark != ''">
+                AND eso.`remark` LIKE CONCAT('%', #{remark,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </select>
+
+    <update id="updatePayTime">
+        UPDATE hkpsi_sale_order eso LEFT JOIN hkpsi_goods eg ON eso.id = eg.sale_order
+        <set>
+            eso.pay_money_date = #{date,jdbcType=VARCHAR},
+            eg.device_out_time=#{date,jdbcType=VARCHAR}
+        </set>
+        <where>
+            eso.id = #{saleOrderId,jdbcType=VARCHAR}
+        </where>
+    </update>
+
+    <select id="isPayTimeDefault" resultType="boolean">
+        SELECT COUNT(*)
+        FROM hkpsi_sale_order
+        WHERE id = #{saleOrderId,jdbcType=VARCHAR}
+          AND pay_money_date = '1970-01-01 00:00:00'
+    </select>
+
+    <select id="selectCountByDate" resultType="java.lang.String">
+        SELECT LPAD(COUNT(*) + 1, 3, 0)
+        FROM hkpsi_sale_order
+        WHERE date = #{date,jdbcType=TIMESTAMP}
+    </select>
+</mapper>

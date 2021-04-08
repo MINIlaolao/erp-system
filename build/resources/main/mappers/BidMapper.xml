@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.purchasing.dao.BidDao">
+    <resultMap id="bid" type="com.kintexgroup.hkpsi.purchasing.entity.BidEntity">
+        <id property="id" column="bid_id" javaType="String" jdbcType="BIGINT"/>
+        <result property="fileName" column="file_name" javaType="String" jdbcType="VARCHAR"/>
+        <result property="date" column="bid_date" javaType="String" jdbcType="DATE"/>
+        <result property="vendor" column="vendor_id" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="program" column="vendor_program" javaType="Integer" jdbcType="SMALLINT"/>
+        <result property="currency" column="currency" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <sql id="entityField">
+        `bid_id` AS `id`,
+        `bid_date` AS `date`,
+        `file_name` AS `fileName`,
+        `vendor_id` AS `vendor`,
+        `vendor_program` AS `program`,
+        `currency`,
+        `exchange_rate` AS `exchangeRate`
+    </sql>
+
+    <sql id="detail_sql">
+        SELECT `b`.`bid_id` AS `id`,
+        `b`.`bid_date` AS `date`,
+        `b`.`exchange_rate` AS `exchangeRate`,
+        JSON_OBJECT(
+        'id', v.`vendor_id`,
+        'name', v.`vendor_name`,
+        'code', v.`vendor_code`
+        ) AS `vendor`,
+        `b`.`currency` as `currencyCode`,
+        JSON_OBJECT(
+        'id', `w`.`won_id`,
+        'number', `w`.`won_number`,
+        'date', `w`.`won_date`,
+        'amount', `w`.`amount`,
+        'virtualWarehouse', `w`.`stage`
+        ) AS `won`
+        FROM `hkpsi_bid` AS `b`
+        LEFT JOIN `hkpsi_vendor` AS `v` ON `b`.`vendor_id` = `v`.`vendor_id`
+        LEFT JOIN `hkpsi_won_bid` AS `w` ON `b`.`bid_id` = `w`.`bid_id`
+    </sql>
+
+    <insert
+        id="insertOne"
+        keyColumn="id"
+        keyProperty="id"
+        parameterType="com.kintexgroup.hkpsi.purchasing.entity.BidEntity"
+    >
+        INSERT INTO `hkpsi_bid` (
+            `bid_id`,
+            `file_name`,
+            `bid_date`,
+            `vendor_id`,
+            `vendor_program`,
+            `currency`,
+            `exchange_rate`,
+            `created_by`,
+            `updated_by`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT},
+            #{fileName,jdbcType=VARCHAR},
+            #{date,jdbcType=DATE},
+            #{vendor,jdbcType=INTEGER},
+            #{program,jdbcType=INTEGER},
+            #{currency,jdbcType=VARCHAR},
+            #{exchangeRate,jdbcType=DECIMAL},
+            #{createdBy,jdbcType=INTEGER},
+            #{updatedBy,jdbcType=INTEGER}
+        );
+    </insert>
+
+    <select
+        id="selectOne"
+        parameterType="String"
+        resultType="com.kintexgroup.hkpsi.purchasing.model.BidVO"
+    >
+        SELECT `bid_id` AS `id`,
+               `file_name` AS `fileName`,
+               `bid_date` AS `date`,
+               JSON_OBJECT(
+                    'id', v.`vendor_id`,
+                    'name', v.`vendor_name`,
+                    'code', v.`vendor_code`
+               ) vendor,
+               `currency`,
+               `exchange_rate` as `exchangeRate`
+        FROM `hkpsi_bid` AS `b`
+        LEFT JOIN `hkpsi_vendor` AS `v` ON `b`.`vendor_id` = `v`.`vendor_id`
+        WHERE `bid_id` = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectOneDetail" parameterType="String"
+            resultType="com.kintexgroup.hkpsi.purchasing.model.BidDetailVO">
+        SELECT `b`.`bid_id` AS `id`,
+        `b`.`bid_date`      AS `date`,
+        `b`.`exchange_rate` AS `exchangeRate`,
+        JSON_OBJECT(
+            'id', v.`vendor_id`,
+            'name', v.`vendor_name`,
+            'code', v.`vendor_code`
+            )               AS `vendor`,
+        `b`.`currency`      as `currencyCode`,
+        JSON_OBJECT(
+            'id', `w`.`won_id`,
+            'number', `w`.`won_number`,
+            'date', `w`.`won_date`,
+            'amount', `w`.`amount`,
+            'virtualWarehouse', `w`.`stage`,
+            'isArrival', har.arrival_order_number,
+            'isShipped', hl.logistics_id,
+            'isPayment', pay_date
+            )               AS `won`
+            FROM `hkpsi_bid` AS `b`
+                     LEFT JOIN `hkpsi_vendor` AS `v` ON `b`.`vendor_id` = `v`.`vendor_id`
+                     LEFT JOIN `hkpsi_won_bid` AS `w` ON `b`.`bid_id` = `w`.`bid_id`
+                     LEFT JOIN `hkpsi_arrival_record` har ON arrival_order_number = won_number
+                     LEFT JOIN `hkpsi_logistics` hl ON w.won_number = hl.won_number
+                     LEFT JOIN `hkpsi_payment_record` epr on w.won_number = epr.won_number
+            WHERE `b`.`bid_id` = #{id, jdbcType=BIGINT};
+    </select>
+
+
+    <select id="selectManyDetail" resultType="com.kintexgroup.hkpsi.purchasing.model.BidDetailVO">
+        <include refid="detail_sql"/>
+        ORDER BY `b`.`created_at` DESC;
+    </select>
+
+    <delete id="deleteOne" parameterType="String">
+        DELETE
+        FROM `hkpsi_bid`
+        WHERE `bid_id` = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <select id="checkDuplicate" parameterType="String" resultType="boolean">
+        SELECT COUNT(*)
+        FROM `hkpsi_bid`
+        WHERE `bid_id` = #{id,jdbcType=BIGINT}
+    </select>
+
+    <update id="updateOne" parameterType="com.kintexgroup.hkpsi.purchasing.entity.BidEntity">
+        UPDATE `hkpsi_bid`
+        <set>
+            <if test="fileName != null and fileName != ''">
+                `file_name` = #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="bidDate != null">
+                `bid_date` = #{bidDate,jdbcType=DATE},
+            </if>
+            <if test="vendorId != null">
+                `vendor_id` = #{vendorId,jdbcType=INTEGER},
+            </if>
+            <if test="currency != null">
+                `currency` = #{currency,jdbcType=VARCHAR},
+            </if>
+            `updated_by` = #{updatedBy,jdbcType=INTEGER}
+        </set>
+        WHERE `bid_id` = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="selectAll" resultType="com.kintexgroup.hkpsi.purchasing.model.BidVO">
+        SELECT `bid_id`    AS               `id`,
+               `file_name` AS               `fileName`,
+               `bid_date`  AS               `date`,
+               JSON_OBJECT('id', v.`vendor_id`, 'name', v.`vendor_name`, 'code',
+                           v.`vendor_code`) vendor,
+               `currency`
+        FROM `hkpsi_bid` AS `b`
+                 LEFT JOIN `hkpsi_vendor` AS `v` ON `b`.`vendor_id` = `v`.`vendor_id`
+        ORDER BY `b`.`created_at` DESC;
+    </select>
+
+
+    <select id="countVendorBetweenYear" resultType="String">
+        select LPAD(COUNT(*) + 1, 2, 0)
+        from `hkpsi_bid`
+        WHERE `vendor_id` = #{id,jdbcType=INTEGER}
+          AND YEAR(`bid_date`) = #{year,jdbcType=INTEGER}
+    </select>
+
+    <select id="countAll" resultType="String">
+        SELECT LPAD(COUNT(*) + 1, 3, 0)
+        FROM `hkpsi_bid`
+        WHERE YEAR(`bid_date`) = #{year,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectBatch" parameterType="com.kintexgroup.hkpsi.purchasing.model.BidPageDTO"
+            resultType="com.kintexgroup.hkpsi.purchasing.model.BidVO">
+        SELECT `b`.`bid_id`        AS `id`,
+        `b`.`bid_date`      AS `bidDate`,
+        `v`.`vendor_name`   AS `vendor`,
+        `vp`.`program_name` AS `program`,
+        `b`.`file_name`     AS `fileName`,
+        `b`.`currency`      AS `currency`,
+        `b`.`exchange_rate` AS `exchangeRate`,
+        `wb`.`won_number`   AS `wonNumber`,
+        `wb`.`won_date`     AS `wonDate`,
+        `wb`.`amount`       AS `amount`
+        FROM `hkpsi_bid` AS `b`
+        LEFT JOIN `hkpsi_won_bid` AS `wb` ON `wb`.`bid_id` = `b`.`bid_id`
+        LEFT JOIN `hkpsi_vendor` AS `v` ON `v`.`vendor_id` = `b`.`vendor_id`
+        LEFT JOIN `hkpsi_vendor_program` `vp` ON `b`.`vendor_program` = `vp`.`program_id`
+        <where>
+            <if test="id != null and id != ''">
+                AND `b`.`bid_id` LIKE CONCAT('%', #{id,jdbcType=BIGINT}, '%')
+            </if>
+            <if test="bidDateStart != null and bidDateEnd != null">
+                AND `b`.`bid_date` between DATE_FORMAT(#{bidDateStart}, '%Y%m%d')
+                    AND DATE_FORMAT(#{bidDateEnd}, '%Y%m%d')
+            </if>
+            <if test="vendor != null and vendor != ''">
+                AND `v`.`vendor_name` LIKE CONCAT('%', #{vendor,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="wonNumber != null and wonNumber != ''">
+                AND `wb`.`won_number` LIKE CONCAT('%', #{wonNumber,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="wonDateStart != null and wonDateEnd != null">
+                AND `wb`.`won_date` between DATE_FORMAT(#{wonDateStart}, '%Y%m%d')
+                    AND DATE_FORMAT(#{wonDateEnd}, '%Y%m%d')
+            </if>
+            <if test="amount != null and amount != ''">
+                AND `wb`.`amount` LIKE CONCAT('%', #{amount,jdbcType=DECIMAL}, '%')
+            </if>
+        </where>
+        ORDER BY b.created_at DESC
+    </select>
+
+    <select id="selectBidDate" resultType="java.util.Date"
+            parameterType="com.kintexgroup.hkpsi.purchasing.model.wonbid.WonBidDTO">
+        select bid_date
+        from hkpsi_bid eb
+                 left join hkpsi_won_bid ewb on eb.bid_id = ewb.bid_id
+        where eb.bid_id = #{bidId,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="selectCreatedAt" parameterType="java.lang.String" resultMap="bid">
+        SELECT *
+        FROM hkpsi_bid
+        WHERE created_at &gt;= #{date,jdbcType=VARCHAR}
+        ORDER BY created_at DESC
+        limit 1
+    </select>
+
+    <select id="selectCurrencySymbolByBidId" resultType="java.lang.String">
+        SELECT currency_symbol
+        FROM `hkpsi_exchange_rate`
+                 LEFT JOIN hkpsi_bid eb ON eb.exchange_rate = hkpsi_exchange_rate.exchange_rate
+        WHERE bid_id = #{bidId,jdbcType=VARCHAR}
+    </select>
+</mapper>

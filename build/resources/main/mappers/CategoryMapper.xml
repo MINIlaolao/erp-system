@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.information.dao.CategoryDao">
+    <resultMap id="category" type="com.kintexgroup.hkpsi.information.entity.Category">
+        <id property="id" column="category_id"/>
+        <result property="name" column="category_name"/>
+        <result property="disabled" column="disabled"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="createdBy" column="created_by"/>
+        <result property="updatedAt" column="updated_at"/>
+        <result property="updatedBy" column="updated_by"/>
+        <collection property="attributes" ofType="com.kintexgroup.hkpsi.information.model.SkuAttributeDTO">
+            <result property="id" column="attribute_id"/>
+            <result property="categoryId" column="category_id"/>
+            <result property="name" column="attribute_name"/>
+            <result property="description" column="description"/>
+        </collection>
+    </resultMap>
+    <insert id="insertOne" useGeneratedKeys="true" keyProperty="id" keyColumn="category_id">
+        INSERT INTO `hkpsi_category`(`category_name`, `disabled`,`created_by`,`updated_by`)
+        <trim prefix="VALUE (" suffix=")">
+            #{name,jdbcType=VARCHAR},
+            <if test="disabled != null">
+                #{disabled,jdbcType=TINYINT},
+            </if>
+            #{createdBy,jdbcType=INTEGER},
+            #{updatedBy,jdbcType=INTEGER}
+        </trim>
+    </insert>
+    <update id="updateById" parameterType="com.kintexgroup.hkpsi.information.entity.Category">
+        UPDATE `hkpsi_category`
+        <set>
+            <if test="name != null">
+                `category_name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="disabled != null">
+                `disabled` = #{disabled,jdbcType=TINYINT},
+            </if>
+            `updated_by` = #{updatedBy,jdbcType=INTEGER}
+        </set>
+        WHERE `category_id` = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <select id="check" resultType="java.lang.Boolean">
+        SELECT count(*)
+        FROM `hkpsi_category`
+        WHERE  `category_name` = #{name,jdbcType=VARCHAR}
+    </select>
+    <select id="checkIsExist" resultType="java.lang.Boolean">
+        SELECT count(*)
+        FROM `hkpsi_category`
+        WHERE `category_name` = #{name,jdbcType=VARCHAR}
+        AND `category_id` = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteOne" parameterType="java.lang.Integer">
+        DELETE `hkpsi_category` ,`hkpsi_sku_attribute` FROM `hkpsi_category`,`hkpsi_sku_attribute` 
+        WHERE  `hkpsi_sku_attribute`.category_id = #{id,jdbcType = INTEGER} and `hkpsi_category`.category_id = #{id,jdbcType = INTEGER}
+    
+    </delete>
+    <select id="selectOneById" parameterType="java.lang.Integer" resultType="com.kintexgroup.hkpsi.information.model.CategoryVO">
+        SELECT `category_id`                AS `id`,
+               `category_name`              AS `name`,
+               `disabled`,
+               (SELECT JSON_ARRAYAGG(JSON_OBJECT(
+                   'id', `attribute_id`,
+                   'name', `attribute_name`,
+                   'description', `description`))
+                FROM `hkpsi_sku_attribute`
+                WHERE `category_id` = `id`) AS `attributes`
+        FROM `hkpsi_category`
+        WHERE category_id = #{id,jdbcType=INTEGER};
+    </select>
+    <select id="selectMany" resultType="com.kintexgroup.hkpsi.information.model.CategoryVO">
+        SELECT `category_id`                AS `id`,
+               `category_name`              AS `name`,
+               `disabled`,
+               (SELECT JSON_ARRAYAGG(JSON_OBJECT(
+                   'id', `attribute_id`,
+                   'attributeName', `attribute_name`,
+                   'description', `description`))
+                FROM `hkpsi_sku_attribute`
+                WHERE `category_id` = `id`) AS `attributes`
+        FROM `hkpsi_category`;
+    </select>
+    
+    <select id="selectByCategory" resultType="java.lang.Integer">
+        SELECT COUNT(hkpsi_spu.`category`)
+            FROM hkpsi_category LEFT JOIN hkpsi_spu ON hkpsi_spu.`category` = hkpsi_category.`category_name`
+        WHERE category_id = #{id}
+    </select>
+</mapper>

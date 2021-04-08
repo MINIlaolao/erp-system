@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.inventory.dao.InventoryDao">
+    <resultMap id="BaseResultMap" type="com.kintexgroup.hkpsi.inventory.entity.Inventory">
+        <!--@mbg.generated generated on Sun Sep 27 17:56:04 CST 2020.-->
+        <!--@Table hkpsi_inventory-->
+        <id column="sku_id" jdbcType="INTEGER" property="skuId"/>
+        <result column="inventory_quantity" jdbcType="INTEGER" property="inventoryQuantity"/>
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        <result column="created_by" jdbcType="INTEGER" property="createdBy"/>
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+        <result column="updated_by" jdbcType="INTEGER" property="updatedBy"/>
+    </resultMap>
+    <resultMap id="Map" type="com.kintexgroup.hkpsi.inventory.entity.Inventory">
+        <!--@mbg.generated generated on Sun Sep 27 17:56:04 CST 2020.-->
+        <!--@Table hkpsi_inventory-->
+        <id column="sku_id" jdbcType="INTEGER" property="skuId"/>
+        <result column="inventory_quantity" jdbcType="INTEGER" property="inventoryQuantity"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Sun Sep 27 17:56:04 CST 2020.-->
+        sku_id, inventory_quantity, created_at, created_by, updated_at, updated_by
+    </sql>
+
+    <update id="updateBatch" parameterType="java.util.List">
+        <!--@mbg.generated generated on Sun Sep 27 17:56:04 CST 2020.-->
+        update `hkpsi_inventory`
+        <set>
+            <foreach collection="list" index="index" separator="," item="item">
+                inventory_quantity = #{item.inventoryQuantity,jdbcType=INTEGER}
+            </foreach>
+        </set>
+        where sku_id in
+        <foreach collection="list" item="item" open="(" close=")" separator=", ">
+            #{item.skuId,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <insert id="batchInsert" parameterType="map">
+        <!--@mbg.generated generated on Sun Sep 27 17:56:04 CST 2020.-->
+        insert into hkpsi_inventory
+            (sku_id, inventory_quantity, created_at, created_by, updated_at, updated_by)
+            values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.skuId,jdbcType=INTEGER}, #{item.inventoryQuantity,jdbcType=INTEGER},
+             #{item.createdAt,jdbcType=TIMESTAMP},
+             #{item.createdBy,jdbcType=INTEGER}, #{item.updatedAt,jdbcType=TIMESTAMP},
+             #{item.updatedBy,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdate" parameterType="com.kintexgroup.hkpsi.inventory.entity.Inventory">
+        <!--@mbg.generated generated on Sun Sep 27 17:56:04 CST 2020.-->
+        insert into hkpsi_inventory
+            (sku_id, inventory_quantity, created_at, created_by, updated_at, updated_by)
+        values (#{skuId,jdbcType=INTEGER}, #{inventoryQuantity,jdbcType=INTEGER},
+                #{createdAt,jdbcType=TIMESTAMP},
+                #{createdBy,jdbcType=INTEGER}, #{updatedAt,jdbcType=TIMESTAMP},
+                #{updatedBy,jdbcType=INTEGER})
+        on duplicate key update sku_id             = #{skuId,jdbcType=INTEGER},
+                                inventory_quantity = #{inventoryQuantity,jdbcType=INTEGER},
+                                created_at         = #{createdAt,jdbcType=TIMESTAMP},
+                                created_by         = #{createdBy,jdbcType=INTEGER},
+                                updated_at         = #{updatedAt,jdbcType=TIMESTAMP},
+                                updated_by         = #{updatedBy,jdbcType=INTEGER}
+    </insert>
+    <insert id="insertOrUpdateSelective" parameterType="com.kintexgroup.hkpsi.inventory.entity.Inventory">
+        <!--@mbg.generated generated on Sun Sep 27 17:56:04 CST 2020.-->
+        insert into hkpsi_inventory
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="skuId != null">
+                sku_id,
+            </if>
+            <if test="inventoryQuantity != null">
+                inventory_quantity,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="createdBy != null">
+                created_by,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="updatedBy != null">
+                updated_by,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="skuId != null">
+                #{skuId,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryQuantity != null">
+                #{inventoryQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy,jdbcType=INTEGER},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy,jdbcType=INTEGER},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="skuId != null">
+                sku_id = #{skuId,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryQuantity != null">
+                inventory_quantity = #{inventoryQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdBy != null">
+                created_by = #{createdBy,jdbcType=INTEGER},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                updated_by = #{updatedBy,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectBatchInventoryQuantity"
+        resultMap="Map">
+        SELECT sku_id, inventory_quantity
+        FROM `hkpsi_inventory` WHERE `sku_id` IN
+        <foreach collection="idList" item="item" open="(" close=")" separator=",">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+
+    <resultMap id="VOmap" type="com.kintexgroup.hkpsi.inventory.model.InventoryVO">
+        <result column="sku_id" property="skuId"/>
+        <result column="inventory_quantity" property="inventoryQuantity"/>
+        <result column="spu_brand" property="brand"/>
+        <result column="spu_name" property="modelName"/>
+    </resultMap>
+    <select id="selectAllVO" resultMap="VOmap">
+        SELECT sku_id, inventory_quantity
+        FROM hkpsi_inventory
+    </select>
+    
+    <select id="selectInventory" parameterType="com.kintexgroup.hkpsi.inventory.model.InventoryPageDTO" resultMap="VOmap">
+        SELECT espu.spu_brand, espu.spu_name,sum(ei.inventory_quantity) as inventory_quantity
+        FROM hkpsi_inventory ei
+                 LEFT JOIN hkpsi_sku es ON ei.sku_id = es.id
+                 LEFT JOIN hkpsi_spu espu ON espu.spu_id = es.spu_id
+        <where>
+            <if test="brand != null">
+                AND espu.spu_brand LIKE CONCAT('%',#{brand,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="modelName != null">
+                AND espu.spu_name LIKE CONCAT('%',#{modelName,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+        group by espu.spu_brand, espu.spu_name
+    </select>
+    
+    <select id="selectSkuPrice" resultType="com.kintexgroup.hkpsi.inventory.model.InventoryVO">
+        select spu.spu_name as modelName,won_price as countPrice
+        from hkpsi_bid_record brecord
+                 left join hkpsi_goods goods ON goods.won_bid_number = brecord.won_id
+                 left join hkpsi_sku sku ON sku.id = goods.sku_id
+                 left join hkpsi_spu spu ON spu.spu_id = sku.spu_id
+        where brecord.sku_id in
+              (select vsku.sku_id from hkpsi_goods goods
+                                left join hkpsi_vendor_sku vsku ON goods.sku_id = vsku.k_sku_id
+               where goods.price=0) and brecord.won_id = goods.won_bid_number
+        group by won_id, brecord.sku_id, won_price,sku.spu_id
+    </select>
+    
+    <select id="selectSkuInventory" parameterType="com.kintexgroup.hkpsi.inventory.model.InventoryPageDTO" resultMap="VOmap">
+        SELECT spu.spu_brand, spu.spu_name,
+        sku.`attribute` ->> '$.model' as model,
+        sku.`attribute` ->> '$.color' as color,
+        sku.`attribute` ->> '$.carrier'  as carrier,
+        sku.`attribute` ->> '$.capacity' as capacity,
+        hkpsi_bid_record.sku_id,
+        won_price as countPrice
+        FROM hkpsi_bid_record
+        LEFT JOIN hkpsi_vendor_sku ON hkpsi_bid_record.sku_id = hkpsi_vendor_sku.sku_id
+        LEFT JOIN hkpsi_sku sku ON sku.id = hkpsi_vendor_sku.k_sku_id
+        LEFT JOIN hkpsi_spu spu ON spu.spu_id = sku.spu_id
+        <where>
+            won_id IN (SELECT won_bid_number FROM hkpsi_goods WHERE price = 0 GROUP BY won_bid_number) 
+            AND hkpsi_bid_record.sku_id IN (SELECT sku_id FROM hkpsi_vendor_sku WHERE k_sku_id IN (
+            SELECT sku_id FROM hkpsi_goods WHERE price = 0))
+            <if test="dto.brand != null and dto.brand.size() != 0">
+                AND spu.spu_brand in
+                <foreach collection="dto.brand" item="brand" index="index" open="(" close=")" separator=",">
+                    #{brand}
+                </foreach>
+            </if>
+            <if test="dto.modelName != null and dto.modelName.size() != 0">
+                AND spu.spu_name in
+                <foreach collection="dto.modelName" item="modelName" index="index" open="(" close=")" separator=",">
+                    #{modelName}
+                </foreach>
+            </if>
+            <if test="dto.model != null and dto.model.size() != 0">
+                AND sku.attribute -> '$.model' in
+                <foreach collection="dto.model" item="model" index="index" open="(" close=")" separator=",">
+                    #{model}
+                </foreach>
+            </if>
+            <if test="dto.color != null and dto.color.size() != 0">
+                AND sku.attribute -> '$.color' in
+                <foreach collection="dto.color" item="color" index="index" open="(" close=")" separator=",">
+                    #{color}
+                </foreach>
+            </if>
+            <if test="dto.capacity != null and dto.capacity.size() != 0">
+                AND sku.attribute -> '$.capacity' in
+                <foreach collection="dto.capacity" item="capacity" index="index" open="(" close=")" separator=",">
+                    #{capacity}
+                </foreach>
+            </if>
+            <if test="dto.carrier != null and dto.carrier.size() != 0">
+                AND sku.attribute -> '$.carrier' in
+                <foreach collection="dto.carrier" item="carrier" index="index" open="(" close=")" separator=",">
+                    #{carrier}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

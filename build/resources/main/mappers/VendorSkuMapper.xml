@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.information.dao.VendorSkuDao">
+    <resultMap id="BaseResultMap" type="com.kintexgroup.hkpsi.information.entity.VendorSkuEntity">
+        <!--@mbg.generated-->
+        <!--@Table hkpsi_vendor_sku-->
+        <id column="sku_id" jdbcType="BIGINT" property="id" javaType="string"/>
+        <result column="sku_description" property="description" jdbcType="VARCHAR"/>
+        <result column="sku_grade" property="grade"/>
+        <result column="sku_tag" jdbcType="VARCHAR" property="tag"/>
+        <result column="vendor_id" jdbcType="INTEGER" property="vendor"/>
+        <result column="disabled" jdbcType="TINYINT" property="disabled" javaType="INTEGER"/>
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        <result column="created_by" jdbcType="INTEGER" property="createdBy"/>
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+        <result column="updated_by" jdbcType="INTEGER" property="updatedBy"/>
+    </resultMap>
+
+    <sql id="entityField">
+        <!--@mbg.generated-->
+        `sku_id`,
+        `sku_description`,
+        `sku_grade`,
+        `sku_tag`,
+        `vendor_id`,
+        `k_sku_id`,
+        `disabled`,
+        `created_at`,
+        `created_by`,
+        `updated_at`,
+        `updated_by`
+    </sql>
+
+    <insert
+        id="insertOne"
+        keyColumn="sku_id"
+        keyProperty="id"
+        parameterType="com.kintexgroup.hkpsi.information.entity.VendorSkuEntity"
+        useGeneratedKeys="true"
+    >
+        <!--@mbg.generated-->
+        INSERT INTO `hkpsi_vendor_sku` (
+            `sku_description`,
+            `sku_grade`,
+            `sku_tag`,
+            `vendor_id`,
+            `k_sku_id`,
+            `disabled`,
+            `created_by`,
+            `updated_by`
+        )
+        VALUES (
+            #{description,jdbcType=VARCHAR},
+            #{grade,jdbcType=VARCHAR},
+            #{tag,jdbcType=VARCHAR},
+            #{vendor,jdbcType=INTEGER},
+            #{kSku,jdbcType=BIGINT},
+            #{disabled,jdbcType=TINYINT},
+            #{createdBy,jdbcType=INTEGER},
+            #{updatedBy,jdbcType=INTEGER}
+        );
+    </insert>
+
+    <insert id="insertBatch">
+        INSERT INTO `hkpsi_vendor_sku` (
+        `sku_description`,
+        `sku_grade`,
+        `sku_tag`,
+        `vendor_id`,
+        `k_sku_id`,
+        `disabled`,
+        `created_by`,
+        `updated_by`
+        ) VALUES
+        <foreach collection="list" separator="," item="item">
+            (#{item.description,jdbcType=VARCHAR},
+            #{item.grade,jdbcType=VARCHAR},
+            #{item.tag,jdbcType=VARCHAR},
+            #{item.vendor,jdbcType=INTEGER},
+            #{item.kSku,jdbcType=BIGINT},
+            #{item.disabled,jdbcType=TINYINT},
+            #{item.createdBy,jdbcType=INTEGER},
+            #{item.updatedBy,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+
+    <delete id="deleteOneById" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        DELETE
+        FROM `hkpsi_vendor_sku`
+        WHERE `sku_id` = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <select id="selectOneById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        SELECT
+        <include refid="entityField"/>
+        FROM `hkpsi_vendor_sku`
+        WHERE `sku_id` = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectBatch" parameterType="com.kintexgroup.hkpsi.information.model.vendorsku.VendorSkuPageDTO"
+            resultMap="BaseResultMap">
+        SELECT
+            vs.`sku_description` AS `description`,
+            vs.`sku_grade` AS `grade`,
+            vs.`sku_tag` AS `tag`,
+            vs.`disabled`,
+            s.`attribute` ->> '$.color'    AS color,
+            s.`attribute` ->> '$.model'    AS model,
+            s.`attribute` ->> '$.grade'    AS grade,
+            s.`attribute` ->> '$.carrier'  AS carrier,
+            s.`attribute` ->> '$.capacity' AS capacity
+        FROM `hkpsi_vendor_sku` vs
+        LEFT JOIN `hkpsi_sku` s ON s.sku_id = vs.k_sku_id
+        LEFT JOIN `hkpsi_vendor` v ON v.vendor_id = vs.vendor_id
+        <where>
+            <if test="tag != null and tag != ''">
+                AND vs.`sku_tag` LIKE CONCAT('%', #{tag,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="vendorId != null">
+                AND vs.`sku_grade` LIKE CONCAT('%', #{vendorId,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="kSkuId != null">
+                AND vs.`k_sku_id` LIKE CONCAT('%', #{kSkuId,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="disabled != null and disabled != ''">
+                AND vs.`disabled` = #{disabled,jdbcType=TINYINT}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryForExistingTags" resultType="java.lang.String">
+        SELECT `sku_tag`
+        FROM `hkpsi_vendor_sku`
+        WHERE `sku_tag` in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+    
+    <select id="selectIdTagKV" resultType="com.kintexgroup.hkpsi.information.model.vendorsku.IdTagPair">
+        SELECT `sku_id` AS `id`, `sku_tag` AS `tag`
+        FROM `hkpsi_vendor_sku`
+        WHERE `sku_tag` in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+
+    <update id="updateOneById" parameterType="com.kintexgroup.hkpsi.information.entity.VendorSkuEntity">
+        <!--@mbg.generated-->
+        UPDATE `hkpsi_vendor_sku`
+        <set>
+            <if test="description != null">
+                `sku_description` = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="tag != null">
+                `sku_tag` = #{tag,jdbcType=VARCHAR},
+            </if>
+            <if test="vendor != null">
+                `vendor_id` = #{vendor,jdbcType=INTEGER},
+            </if>
+            <if test="kSku != null">
+                `k_sku_id` = #{kSku,jdbcType=BIGINT},
+            </if>
+            <if test="disabled != null">
+                `disabled` = #{disabled,jdbcType=TINYINT},
+            </if>
+            `updated_by` = #{updatedBy,jdbcType=INTEGER}
+        </set>
+        WHERE `sku_id` = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

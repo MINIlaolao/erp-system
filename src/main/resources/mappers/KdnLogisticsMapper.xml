@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.information.dao.KdnLogisticsDao">
+  <resultMap id="BaseResultMap" type="com.kintexgroup.hkpsi.information.entity.KdnLogistics">
+    <!--@mbg.generated generated on Tue Dec 08 13:45:55 CST 2020.-->
+    <!--@Table hkpsi_kdn_logistics-->
+    <id column="kdn_logistics_id" jdbcType="INTEGER" property="kdnLogisticsId" />
+    <result column="kdn_logistics_name" jdbcType="VARCHAR" property="kdnLogisticsName" />
+    <result column="kdn_logistics_code" jdbcType="VARCHAR" property="kdnLogisticsCode" />
+    <result column="disabled" jdbcType="TINYINT" property="disabled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Tue Dec 08 13:45:55 CST 2020.-->
+    kdn_logistics_id, kdn_logistics_name, kdn_logistics_code, disabled
+  </sql>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated generated on Tue Dec 08 13:45:55 CST 2020.-->
+    update hkpsi_kdn_logistics
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="kdn_logistics_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.kdnLogisticsName != null">
+            when kdn_logistics_id = #{item.kdnLogisticsId,jdbcType=INTEGER} then #{item.kdnLogisticsName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="kdn_logistics_code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.kdnLogisticsCode != null">
+            when kdn_logistics_id = #{item.kdnLogisticsId,jdbcType=INTEGER} then #{item.kdnLogisticsCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="disabled = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.disabled != null">
+            when kdn_logistics_id = #{item.kdnLogisticsId,jdbcType=INTEGER} then #{item.disabled,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where kdn_logistics_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.kdnLogisticsId,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="kdn_logistics_id" keyProperty="kdnLogisticsId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated generated on Tue Dec 08 13:45:55 CST 2020.-->
+    insert into hkpsi_kdn_logistics
+    (kdn_logistics_name, kdn_logistics_code, disabled)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.kdnLogisticsName,jdbcType=VARCHAR}, #{item.kdnLogisticsCode,jdbcType=VARCHAR}, 
+        #{item.disabled,jdbcType=TINYINT})
+    </foreach>
+  </insert>
+</mapper>

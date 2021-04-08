@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.information.dao.ArrivalRecordDao">
+  <resultMap id="BaseResultMap" type="com.kintexgroup.hkpsi.information.entity.ArrivalRecord">
+    <!--@mbg.generated generated on Fri Dec 11 10:14:33 CST 2020.-->
+    <!--@Table hkpsi_arrival_record-->
+    <id column="record_id" jdbcType="BIGINT" property="recordId" />
+    <result column="arrival_order_number" jdbcType="VARCHAR" property="arrivalOrderNumber" />
+    <result column="arrival_date" jdbcType="DATE" property="arrivalDate" />
+    <result column="arrival_tracking" jdbcType="VARCHAR" property="arrivalTracking" />
+    <result column="arrival_carrier" jdbcType="VARCHAR" property="arrivalCarrier" />
+    <result column="arrival_pieces" jdbcType="INTEGER" property="arrivalPieces" />
+    <result column="arrival_carton_or_pallet" jdbcType="VARCHAR" property="arrivalCartonOrPallet" />
+    <result column="arrival_weight" jdbcType="DOUBLE" property="arrivalWeight" />
+    <result column="arrival_receiver" jdbcType="VARCHAR" property="arrivalReceiver" />
+    <result column="arrival_delivery_time" jdbcType="TIMESTAMP" property="arrivalDeliveryTime" />
+    <result column="arrival_damage" jdbcType="VARCHAR" property="arrivalDamage" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="updated_by" jdbcType="INTEGER" property="updatedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Fri Dec 11 10:14:33 CST 2020.-->
+    record_id, arrival_order_number, arrival_date, arrival_tracking, arrival_carrier, 
+    arrival_pieces, arrival_carton_or_pallet, arrival_weight, arrival_receiver, arrival_delivery_time, 
+    arrival_damage, create_at, created_by, updated_at, updated_by
+  </sql>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated generated on Fri Dec 11 10:14:33 CST 2020.-->
+    update hkpsi_arrival_record
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="arrival_order_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.arrivalOrderNumber != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.arrivalOrderNumber,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="arrival_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.arrivalDate != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.arrivalDate,jdbcType=DATE}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="arrival_tracking = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.arrivalTracking != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.arrivalTracking,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="arrival_carrier = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.arrivalCarrier != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.arrivalCarrier,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="arrival_pieces = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.arrivalPieces != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.arrivalPieces,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="arrival_carton_or_pallet = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.arrivalCartonOrPallet != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.arrivalCartonOrPallet,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="arrival_weight = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.arrivalWeight != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.arrivalWeight,jdbcType=DOUBLE}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="arrival_receiver = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.arrivalReceiver != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.arrivalReceiver,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="arrival_delivery_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.arrivalDeliveryTime != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.arrivalDeliveryTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="arrival_damage = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.arrivalDamage != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.arrivalDamage,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createAt != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.createAt,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="created_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createdBy != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.createdBy,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updatedAt != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.updatedAt,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updated_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updatedBy != null">
+            when record_id = #{item.recordId,jdbcType=BIGINT} then #{item.updatedBy,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where record_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.recordId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="record_id" keyProperty="recordId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated generated on Fri Dec 11 10:14:33 CST 2020.-->
+    insert into hkpsi_arrival_record
+    (arrival_order_number, arrival_date, arrival_tracking, arrival_carrier, arrival_pieces, 
+      arrival_carton_or_pallet, arrival_weight, arrival_receiver, arrival_delivery_time, 
+      arrival_damage,  created_by, updated_by)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.arrivalOrderNumber,jdbcType=VARCHAR}, #{item.arrivalDate,jdbcType=DATE}, 
+        #{item.arrivalTracking,jdbcType=VARCHAR}, #{item.arrivalCarrier,jdbcType=VARCHAR}, 
+        #{item.arrivalPieces,jdbcType=INTEGER}, #{item.arrivalCartonOrPallet,jdbcType=VARCHAR}, 
+        #{item.arrivalWeight,jdbcType=DOUBLE}, #{item.arrivalReceiver,jdbcType=VARCHAR}, 
+        #{item.arrivalDeliveryTime,jdbcType=TIMESTAMP}, #{item.arrivalDamage,jdbcType=VARCHAR}, 
+         #{item.createdBy,jdbcType=INTEGER},
+        #{item.updatedBy,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.inventory.dao.InventoryGoodsDao">
+    <resultMap id="ResultMapWithoutPrice" type="com.kintexgroup.hkpsi.inventory.model.InventoryGoodsWithoutPrice">
+        <id column="record_id" jdbcType="BIGINT" property="id" />
+        <result column="lot_id" jdbcType="VARCHAR" property="lotId" />
+        <result column="brand" jdbcType="VARCHAR" property="brand" />
+        <result column="model" jdbcType="VARCHAR" property="model" />
+        <result column="model_name" jdbcType="VARCHAR" property="modelName" />
+        <result column="model_number" jdbcType="VARCHAR" property="modelNumber" />
+        <result column="imei" jdbcType="VARCHAR" property="imei" />
+        <result column="imei2" jdbcType="VARCHAR" property="imei2" />
+        <result column="serial_number" jdbcType="VARCHAR" property="serialNumber" />
+        <result column="capacity" jdbcType="SMALLINT" property="capacity" />
+        <result column="color" jdbcType="VARCHAR" property="color" />
+        <result column="source_oem" jdbcType="VARCHAR" property="sourceOEM" />
+        <result column="source_part_no" jdbcType="VARCHAR" property="sourcePartNo" />
+        <result column="source_model" jdbcType="VARCHAR" property="sourceModel" />
+        <result column="source_capacity" jdbcType="VARCHAR" property="sourceCapacity" />
+        <result column="source_carrier" jdbcType="VARCHAR" property="sourceCarrier" />
+        <result column="source_color" jdbcType="VARCHAR" property="sourceColor" />
+        <result column="source_grade" jdbcType="VARCHAR" property="sourceGrade" />
+        <result column="source_code" jdbcType="VARCHAR" property="sourceCode" />
+        <result column="source_imei2" jdbcType="VARCHAR" property="sourceIMEI2" />
+        <result column="carton_id" jdbcType="BIGINT" property="cartonId" />
+        <result column="url" jdbcType="VARCHAR" property="url" />
+    </resultMap>
+    <resultMap id="BaseResultMap" type="com.kintexgroup.hkpsi.inventory.entity.InventoryGoodsEntity" extends="ResultMapWithoutPrice">
+        <!--@mbg.generated generated on Wed Jan 27 14:17:13 CST 2021.-->
+        <!--@Table kintex_hkpsi.hkpsi_inventory_goods -->
+        <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="hkd" jdbcType="DECIMAL" property="hkd" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+        <result column="updated_by" jdbcType="INTEGER" property="updatedBy" />
+    </resultMap>
+    <sql id="entity_field_without_price">
+        record_id, lot_id, brand, model, model_name, model_number, imei, imei2, serial_number,
+        capacity, color, source_oem, source_part_no, source_model, source_capacity, source_carrier,
+        source_color, source_grade, source_code, source_imei2, carton_id, url
+    </sql>
+    <sql id="entity_field">
+        <!--@mbg.generated generated on Wed Jan 27 14:17:13 CST 2021.-->
+        record_id, lot_id, brand, model, model_name, model_number, imei, imei2, serial_number, 
+        capacity, color, source_oem, source_part_no, source_model, source_capacity, source_carrier, 
+        source_color, source_grade, source_code, source_imei2, price, hkd, carton_id, url, 
+        created_at, created_by, updated_at, updated_by
+    </sql>
+    <select id="selectOneById" resultMap="ResultMapWithoutPrice">
+        SELECT <include refid="entity_field_without_price"/>
+        FROM `hkpsi_inventory_goods`
+        WHERE `record_id` = #{id,jdbcType=BIGINT}
+        ORDER BY `created_at` DESC LIMIT 1;
+    </select>
+    <select id="selectOneByIdAndCode" resultMap="ResultMapWithoutPrice">
+        SELECT <include refid="entity_field_without_price"/>
+        FROM `hkpsi_inventory_goods`
+        WHERE `record_id` = #{param1,jdbcType=BIGINT} AND `source_code` = #{param2,jdbcType=VARCHAR}
+        ORDER BY `created_at` DESC LIMIT 1;
+    </select>
+    <select id="selectOneByIMEI" resultMap="ResultMapWithoutPrice">
+        SELECT <include refid="entity_field_without_price"/>
+        FROM `hkpsi_inventory_goods`
+        WHERE `imei` = #{imei,jdbcType=VARCHAR}
+        ORDER BY `created_at` DESC LIMIT 1;
+    </select>
+    <select id="selectLotIdByIMEI" resultType="java.lang.String">
+        SELECT `lot_id`
+        FROM `hkpsi_inventory_goods`
+        WHERE `source_code` = #{imei, jdbcType=VARCHAR}
+        ORDER BY `created_at` DESC LIMIT 1;
+    </select>
+    <select id="selectOneBySerialNumber" resultMap="ResultMapWithoutPrice">
+        SELECT <include refid="entity_field_without_price"/>
+        FROM `hkpsi_inventory_goods`
+        WHERE `serial_number` = #{serialNumber,jdbcType=VARCHAR}
+        ORDER BY `created_at` DESC LIMIT 1;
+    </select>
+    <select id="selectOneBySourceCode" resultMap="ResultMapWithoutPrice">
+        SELECT <include refid="entity_field_without_price"/>
+        FROM `hkpsi_inventory_goods`
+        WHERE `source_code` = #{code,jdbcType=VARCHAR}
+        ORDER BY `created_at` DESC LIMIT 1;
+    </select>
+    <!--  2020-01-26 11:37 hzgotb  -->
+    <select id="selectListByCodes" resultMap="BaseResultMap">
+        SELECT <include refid="entity_field" />
+        FROM `hkpsi_inventory_goods`
+        WHERE source_code IN
+        <foreach collection="array" item="item" open="(" close=")" separator=",">
+            #{item, jdbcType=VARCHAR}
+        </foreach>
+    </select>
+    <!--  2020-01-27 16:30 hzgotb  -->
+    <select id="selectListWithoutPriceByCodes" resultMap="ResultMapWithoutPrice">
+        SELECT <include refid="entity_field_without_price"/>
+        FROM `hkpsi_inventory_goods`
+        WHERE source_code IN
+        <foreach collection="array" item="item" open="(" close=")" separator=",">
+            #{item, jdbcType=VARCHAR}
+        </foreach>
+    </select>
+    <select id="selectListByCarton" resultMap="ResultMapWithoutPrice" parameterType="java.lang.String">
+        SELECT <include refid="entity_field_without_price" />
+        FROM `hkpsi_inventory_goods`
+        WHERE `carton_id` = #{id,jdbcType=BIGINT}
+    </select>
+    <update id="batchUpdateCartonId">
+        UPDATE `hkpsi_inventory_goods`
+        SET `carton_id` = #{param2,jdbcType=BIGINT}
+        WHERE `record_id` IN
+        <foreach collection="param1" item="id" separator="," open="(" close=")">
+            #{id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+</mapper>

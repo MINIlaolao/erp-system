@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao接口-->
+<mapper namespace="com.kintexgroup.hkpsi.information.dao.VendorDao">
+    <resultMap id="vendor" type="com.kintexgroup.hkpsi.information.entity.Vendor">
+        <id property="id" column="vendor_id"/>
+        <result property="code" column="vendor_code"/>
+        <result property="name" column="vendor_name"/>
+        <result property="disabled" column="disabled"/>
+    </resultMap>
+    <select id="selectOne" parameterType="java.lang.Integer" resultMap="vendor">
+        SELECT vendor_id,
+               vendor_code,
+               vendor_name,
+               disabled
+        FROM `hkpsi_vendor`
+        WHERE `vendor_id` = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectOneOrManyVendor" parameterType="com.kintexgroup.hkpsi.information.model.VendorPageDTO"
+            resultMap="vendor">
+        SELECT vendor_id,
+               vendor_code,
+               vendor_name,
+               disabled
+        FROM `hkpsi_vendor`
+        <where>
+            <if test="code != null and code != ''">
+                `vendor_code` LIKE CONCAT('%', #{code,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="name != null and name != ''">
+                AND `vendor_name` LIKE CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="disabled != null">
+                AND `disabled` = #{disabled,jdbcType=TINYINT}
+            </if>
+        </where>
+        order by created_at desc
+    </select>
+    <select id="check" parameterType="String"
+            resultType="java.lang.Boolean">
+        SELECT count(*)
+        FROM `hkpsi_vendor`
+        WHERE `vendor_code` = #{code,jdbcType=VARCHAR}
+          AND `vendor_name` = #{name,jdbcType=VARCHAR}
+    </select>
+    <select id="checkCode" parameterType="String"
+            resultType="java.lang.Boolean">
+        SELECT count(*)
+        FROM `hkpsi_vendor`
+        WHERE `vendor_code` = #{code,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteOne" parameterType="java.lang.Integer">
+        DELETE
+        FROM `hkpsi_vendor`
+        WHERE `vendor_id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <select id="selectByVendorId" resultType="java.lang.Integer">
+        SELECT COUNT(hkpsi_vendor_sku.`vendor_id`)
+        FROM hkpsi_vendor
+                 LEFT JOIN hkpsi_vendor_sku ON hkpsi_vendor_sku.`vendor_id` = hkpsi_vendor.`vendor_id`
+        where hkpsi_vendor.vendor_id = #{id};
+    </select>
+    <select id="checkVendor" parameterType="java.lang.Integer"
+            resultType="java.lang.Boolean">
+        SELECT count(*)
+        FROM `hkpsi_vendor`
+        WHERE `vendor_id` = #{id,jdbcType=INTEGER}
+    </select>
+    <insert id="insertOne"
+            keyColumn="vendor_id"
+            keyProperty="id"
+            parameterType="com.kintexgroup.hkpsi.information.entity.Vendor"
+            useGeneratedKeys="true"
+    >
+        INSERT INTO `hkpsi_vendor`
+        <trim prefix="(" suffix=")">
+            `vendor_code`, `vendor_name`,
+            <if test="disabled != null">
+                `disabled`,
+            </if>
+            `created_by`, `updated_by`
+        </trim>
+        <trim prefix="VALUES (" suffix=")">
+            #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+            <if test="disabled != null">
+                #{disabled,jdbcType=TINYINT},
+            </if>
+            #{createdBy,jdbcType=INTEGER}, #{updatedBy,jdbcType=INTEGER}
+        </trim>
+    </insert>
+    <update id="updateOne" parameterType="com.kintexgroup.hkpsi.information.entity.Vendor">
+        UPDATE `hkpsi_vendor`
+        <set>
+            <if test="code != null">
+                `vendor_code` = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `vendor_name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="disabled != null">
+                `disabled` = #{disabled,jdbcType=TINYINT},
+            </if>
+            `updated_by` = #{updatedBy,jdbcType=INTEGER}
+        </set>
+        WHERE `vendor_id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectCodeById" resultType="String">
+        SELECT vendor_code
+        FROM hkpsi_vendor
+        WHERE vendor_id = #{vendorId,jdbcType=VARCHAR}
+    </select>
+</mapper>

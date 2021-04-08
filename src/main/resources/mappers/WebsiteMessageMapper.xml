@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.information.dao.WebsiteMessageDao">
+    <resultMap id="BaseResultMap" type="com.kintexgroup.hkpsi.information.entity.WebsiteMessage">
+        <!--@mbg.generated generated on Tue Sep 15 10:50:06 CST 2020.-->
+        <!--@Table website_wireless_message-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="session_id" jdbcType="BIGINT" property="sessionId"/>
+        <result column="from" jdbcType="VARCHAR" property="from"/>
+        <result column="to" jdbcType="VARCHAR" property="to"/>
+        <result column="message" jdbcType="VARCHAR" property="message"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+    </resultMap>
+
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+        parameterType="com.kintexgroup.hkpsi.information.entity.WebsiteMessage">
+        INSERT INTO `website_wireless_message`(
+        <if test="sessionId != null and sessionId != ''">
+            session_id,
+        </if>
+        <if test="from != null and from != ''">
+            `from`,
+        </if>
+        <if test="to != null and to != ''">
+            `to`,
+        </if>
+        <if test="message != null and message != ''">
+            message
+        </if>
+        ) VALUES (
+        <if test="sessionId != null and sessionId != ''">
+            #{sessionId,jdbcType=BIGINT},
+        </if>
+        <if test="from != null and from != ''">
+            #{from,jdbcType=VARCHAR},
+        </if>
+        <if test="to != null and to != ''">
+            #{to,jdbcType=VARCHAR},
+        </if>
+        <if test="message != null and message != ''">
+            #{message,jdbcType=VARCHAR}
+        </if>
+        )
+    </insert>
+</mapper>

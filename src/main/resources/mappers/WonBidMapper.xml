@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.purchasing.dao.WonBidDao">
+    <resultMap id="bidAndWonBidMap" type="com.kintexgroup.hkpsi.purchasing.model.wonbid.WonBidVendorVO">
+        <result column="won_number" property="number"/>
+        <result column="won_date" property="date"/>
+        <result column="amount" property="amount"/>
+        <result column="bid_id" property="bidId"/>
+        <collection property="bid" ofType="com.kintexgroup.hkpsi.purchasing.model.BidVO">
+            <id column="won_id" property="id"/>
+            <result column="vendor" property="vendor"/>
+            <result column="currency" property="currency"/>
+        </collection>
+    </resultMap>
+
+    <insert
+        id="insertOne" useGeneratedKeys="true" keyProperty="id" keyColumn="won_bid"
+        parameterType="com.kintexgroup.hkpsi.purchasing.entity.WonBidEntity"
+    >
+        INSERT INTO `hkpsi_won_bid` (`won_number`,
+                                    `won_date`,
+                                    `amount`,
+                                    `bid_id`,
+                                    `exchange_rate`,
+                                    `created_by`,
+                                    `updated_by`)
+        VALUES (#{number,jdbcType=VARCHAR},
+                DATE_FORMAT(#{date}, '%Y-%m-%d %H:%i:%s'),
+                #{amount,jdbcType=DECIMAL},
+                #{bidId,jdbcType=BIGINT},
+                #{exchangeRate,jdbcType=DECIMAL},
+                #{createdBy,jdbcType=INTEGER},
+                #{updatedBy,jdbcType=INTEGER});
+    </insert>
+
+    <resultMap id="WonBidRecordVOMap"
+               type="com.kintexgroup.hkpsi.purchasing.model.wonbid.WonBidRecordVO">
+        <result column="won_number" property="number"/>
+        <result column="won_date" property="date"/>
+        <result column="amount" property="amount"/>
+        <result column="bid_id" property="bidId"/>
+        <collection column="bidRecord" property="bidRecord"/>
+    </resultMap>
+    <select id="selectOneById" parameterType="String"
+            resultType="com.kintexgroup.hkpsi.purchasing.model.wonbid.WonBidRecordVO">
+        SELECT ewb.won_number as `number`,
+               ewb.won_date   as `date`,
+               ewb.amount     as `amount`,
+               ewb.bid_id     as `bidId`,
+               ewb.stage      as `virtualWarehouse`
+        FROM `hkpsi_won_bid` ewb
+        WHERE ewb.won_number = #{id, jdbcType=BIGINT}
+        limit 1
+    </select>
+
+    <select id="selectMany" parameterType="String" resultMap="bidAndWonBidMap">
+        SELECT hkpsi_won_bid.won_id,
+               hkpsi_won_bid.won_number,
+               hkpsi_won_bid.won_date,
+               hkpsi_won_bid.amount,
+               hkpsi_won_bid.bid_id,
+               hkpsi_won_bid.stage,
+               `file_name` AS               `fileName`,
+               `bid_date`  AS               `date`,
+               JSON_OBJECT('id', v.`vendor_id`, 'name', v.`vendor_name`, 'code',
+                           v.`vendor_code`) vendor,
+               `currency`
+        FROM `hkpsi_won_bid`
+                 LEFT JOIN hkpsi_bid b ON hkpsi_won_bid.bid_id = b.bid_id
+                 LEFT JOIN `hkpsi_vendor` AS `v` ON `b`.`vendor_id` = `v`.`vendor_id`
+    </select>
+
+
+    <update id="updateOne" parameterType="com.kintexgroup.hkpsi.purchasing.entity.WonBidEntity">
+        UPDATE `hkpsi_won_bid`
+        <set>
+            <if test="number != null">
+                `won_number` = #{number, jdbcType=VARCHAR},
+            </if>
+            <if test="date != null">
+                `won_date`= #{date, jdbcType=DATE},
+            </if>
+            <if test="amount != null">
+                `amount` = #{amount, jdbcType=DECIMAL},
+            </if>
+            <if test="bidId != null">
+                `bid_id` = #{bidId, jdbcType=BIGINT},
+            </if>
+            <if test="stage != null">
+                `stage` = #{stage, jdbcType=TINYINT},
+            </if>
+            `updated_by` = #{updatedBy, jdbcType=INTEGER}
+        </set>
+        WHERE `won_id` = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteOneById" parameterType="String">
+        DELETE
+        FROM `hkpsi_won_bid`
+        WHERE `won_id` = #{id, jdbcType=BIGINT}
+    </delete>
+
+    <select id="selectOneByIdRecord"
+            resultType="com.kintexgroup.hkpsi.purchasing.model.wonbid.BidRecordVO">
+        SELECT bid_id,
+               description,
+               grade,
+               sku_id,
+               quantity,
+               won_qty,
+               bid_price,
+               hkd,
+               won_price,
+               won_hkd,
+               tag
+        FROM hkpsi_bid_record ebr
+        WHERE won_id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectOneOrMany" parameterType="com.kintexgroup.hkpsi.purchasing.model.wonbid.WinBidPageDTO"
+            resultType="com.kintexgroup.hkpsi.purchasing.entity.WonBidEntity">
+        SELECT ewb.`won_number`    as number,
+               ewb.`won_date`      as date,
+               ewb.`amount`,
+               ewb.`warehouse`,
+               ewb.`exchange_rate` as `exchangeRate`,
+               ewb.is_shipped      as `isShipped`,
+               ev.`vendor_name`    as vendor,
+               ewb.bid_id          as `bidId`
+        FROM `hkpsi_won_bid` ewb
+                 LEFT JOIN `hkpsi_bid` eb ON eb.`bid_id` = ewb.`bid_id`
+                 LEFT JOIN `hkpsi_vendor` ev ON ev.`vendor_id` = eb.`vendor_id`
+        <where>
+            <if test="number != null and number != ''">
+                AND ewb.`won_number` LIKE CONCAT('%', #{number,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="date != null">
+                AND ewb.`won_date` between DATE_FORMAT(#{date[0]}, '%Y%m%d')
+                    AND DATE_FORMAT(#{date[1]}, '%Y%m%d')
+            </if>
+            <if test="amount != null and amount != ''">
+                AND ewb.`amount` LIKE CONCAT('%', #{amount,jdbcType=DECIMAL}, '%')
+            </if>
+            <if test="vendor != null and vendor != ''">
+                AND ev.`vendor_name` LIKE CONCAT('%', #{vendor,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </select>
+
+    <update id="updateShip">
+        UPDATE hkpsi_won_bid
+        <set>
+            is_shipped=1
+        </set>
+        WHERE is_shipped = 0
+          AND won_number = #{wonNumber,jdbcType=VARCHAR}
+    </update>
+
+    <select id="checkIsShipped" resultType="int">
+        SELECT COUNT(*)
+        from hkpsi_won_bid
+                 LEFT JOIN hkpsi_logistics hl on hkpsi_won_bid.won_number = hl.won_number
+        where hkpsi_won_bid.won_number = #{wonNumber,jdbcType=VARCHAR}
+          AND is_shipped = 1
+          AND hl.disabled = 0
+    </select>
+
+    <select id="selectWonBidCountByYearVendorId" resultType="java.lang.String">
+        SELECT LPAD(COUNT(*) + 1,4,0)
+        FROM hkpsi_won_bid
+                 LEFT JOIN hkpsi_bid eb on hkpsi_won_bid.bid_id = eb.bid_id
+        WHERE vendor_id = #{vendorId,jdbcType=VARCHAR}
+          AND YEAR(hkpsi_won_bid.created_at) BETWEEN #{year,jdbcType=VARCHAR} AND #{year,jdbcType=VARCHAR} + 1
+    </select>
+</mapper>

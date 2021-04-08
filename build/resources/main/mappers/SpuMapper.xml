@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao接口-->
+<mapper namespace="com.kintexgroup.hkpsi.information.dao.SpuDao">
+    <resultMap id="spu" type="com.kintexgroup.hkpsi.information.entity.Spu">
+        <id property="id" column="spu_id"/>
+        <result property="name" column="spu_name"/>
+        <result property="brand" column="spu_brand"/>
+        <result property="category" column="category"/>
+        <result property="spec" column="spec"
+            typeHandler="com.kintexgroup.hkpsi.common.handler.GenericTypeHandler"/>
+        <result property="disabled" column="disabled"/>
+        <result property="createdAt" column="createdAt"/>
+    </resultMap>
+    <insert id="insert"
+        keyColumn="carrier_id"
+        keyProperty="id"
+        parameterType="com.kintexgroup.hkpsi.information.entity.Spu"
+        useGeneratedKeys="true">
+        INSERT INTO `hkpsi_spu`
+        <trim prefix="(" suffix=")">
+            `spu_name`, `spu_brand`, `category`, `spec`,
+            <if test="disabled != null">
+                `disabled`,
+            </if>
+            `created_by`, `updated_by`
+        </trim>
+        <trim prefix="VALUE (" suffix=")">
+            #{name,jdbcType=VARCHAR},
+            #{brand,jdbcType=VARCHAR},
+            #{category,jdbcType=VARCHAR},
+            #{spec,typeHandler=GenericTypeHandler},
+            <if test="disabled != null">
+                #{disabled,jdbcType=TINYINT},
+            </if>
+            #{createdBy,jdbcType=INTEGER},
+            #{updatedBy,jdbcType=INTEGER}
+        </trim>
+    </insert>
+    <select id="selectOneOrMany" parameterType="com.kintexgroup.hkpsi.information.model.SpuPageDTO" resultMap="spu">
+        SELECT `spu_id`, `spu_name`, `spu_brand`, `category`, `spec`,`disabled`,updated_at
+        FROM `hkpsi_spu`
+        <where>
+        <if test="name != null and name != ''">
+            `spu_name` LIKE CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="disabled != null">
+            AND `disabled` =#{disabled,jdbcType=TINYINT}
+        </if>
+        </where>
+    </select>
+
+    <select id="selectOne" parameterType="java.lang.Integer" resultMap="spu">
+        SELECT `spu_id`, `spu_name`, `spu_brand`, `category`, `disabled`,`spec`
+        FROM `hkpsi_spu`
+        WHERE `spu_id` = #{id,jdbcType=INTEGER}
+    </select>
+    
+    <select id="selectAll" resultMap="spu">
+        SELECT `spu_id`, `spu_name`, `spu_brand`, `category`, `spec`, `disabled`
+        FROM `hkpsi_spu`
+    </select>
+    <delete id="deleteOne" parameterType="java.lang.Integer">
+        DELETE `hkpsi_spu`,`hkpsi_sku`
+        FROM `hkpsi_spu`,
+             `hkpsi_sku`
+        WHERE hkpsi_spu.spu_id = #{id,jdbcType=INTEGER}
+          AND hkpsi_sku.spu_id = #{id,jdbcType=INTEGER}
+    </delete>
+    <update id="updateOne" parameterType="com.kintexgroup.hkpsi.information.entity.Spu">
+        UPDATE `hkpsi_spu`
+        <set>
+            <if test="name != null">
+                `spu_name` =#{name,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null">
+                `spu_brand` =#{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                `category` =#{category,jdbcType=VARCHAR},
+            </if>
+            <if test="spec != null">
+                `spec` =#{spec,typeHandler=com.kintexgroup.hkpsi.common.handler.GenericTypeHandler},
+            </if>
+            <if test="disabled != null">
+                `disabled` =#{disabled,jdbcType=TINYINT},
+            </if>
+            `updated_by` = #{updatedBy,jdbcType=INTEGER}
+        </set>
+        WHERE `spu_id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="check" parameterType="String"
+        resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM `hkpsi_spu`
+        WHERE `spu_name` = #{name,jdbcType=VARCHAR}
+          AND `spu_brand` = #{brand,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="batchInsertSpu"
+        parameterType="java.util.List" useGeneratedKeys="true"
+        keyColumn="spu_id" keyProperty="id">
+        INSERT INTO `hkpsi_spu`
+            (spu_name, spu_brand, category, spec, created_by,
+             updated_by)
+            VALUES 
+        <foreach collection="spuList" item="item" separator="," index="index">
+            ( #{item.name,jdbcType=VARCHAR}, #{item.brand,jdbcType=VARCHAR},
+            #{item.category,jdbcType=VARCHAR},
+            #{item.spec,typeHandler=com.kintexgroup.hkpsi.common.handler.GenericTypeHandler},
+            #{item.createdBy,jdbcType=INTEGER},
+            #{item.updatedBy,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+
+</mapper>

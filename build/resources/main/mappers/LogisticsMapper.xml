@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.information.dao.LogisticsDao">
+    <resultMap id="BaseResultMap" type="com.kintexgroup.hkpsi.information.entity.Logistics">
+        <!--@mbg.generated generated on Tue Dec 08 13:44:28 CST 2020.-->
+        <!--@Table hkpsi_logistics-->
+        <id column="logistics_id" jdbcType="BIGINT" property="logisticsId"/>
+        <result column="won_number" jdbcType="VARCHAR" property="wonNumber"/>
+        <result column="logistics_number" jdbcType="VARCHAR" property="logisticsNumber"/>
+        <result column="kdn_logistics_id" jdbcType="INTEGER" property="kdnLogisticsId"/>
+        <result column="disabled" jdbcType="TINYINT" property="disabled"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Tue Dec 08 13:44:28 CST 2020.-->
+        logistics_id, won_number, logistics_number, kdn_logistics_id, disabled
+    </sql>
+    <update id="updateBatchSelective" parameterType="java.util.List">
+        <!--@mbg.generated generated on Tue Dec 08 13:44:28 CST 2020.-->
+        update hkpsi_logistics
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="won_number = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.wonNumber != null">
+                        when logistics_id = #{item.logisticsId,jdbcType=BIGINT} then #{item.wonNumber,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="logistics_number = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.logisticsNumber != null">
+                        when logistics_id = #{item.logisticsId,jdbcType=BIGINT}
+                            then #{item.logisticsNumber,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="kdn_logistics_id = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.kdnLogisticsId != null">
+                        when logistics_id = #{item.logisticsId,jdbcType=BIGINT}
+                            then #{item.kdnLogisticsId,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="disabled = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.disabled != null">
+                        when logistics_id = #{item.logisticsId,jdbcType=BIGINT} then #{item.disabled,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where logistics_id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.logisticsId,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <insert id="batchInsert" keyColumn="logistics_id" keyProperty="logisticsId" parameterType="map"
+            useGeneratedKeys="true">
+        <!--@mbg.generated generated on Tue Dec 08 13:44:28 CST 2020.-->
+        insert into hkpsi_logistics
+            (won_number, logistics_number, kdn_logistics_id, disabled)
+            values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.wonNumber,jdbcType=VARCHAR}, #{item.logisticsNumber,jdbcType=VARCHAR},
+             #{item.kdnLogisticsId,jdbcType=INTEGER},
+             #{item.disabled,jdbcType=TINYINT})
+        </foreach>
+    </insert>
+
+    <select id="getKdnLogisticsByWonNumber" resultType="com.kintexgroup.hkpsi.information.model.LogisticsMap">
+        select hkpsi_logistics.logistics_number as `logisticsNumber`,
+               hkl.kdn_logistics_code           as `kdnLogisticsCode`
+        from hkpsi_logistics
+                 left join hkpsi_kdn_logistics hkl on hkpsi_logistics.kdn_logistics_id = hkl.kdn_logistics_id
+        where hkpsi_logistics.won_number = #{wonNumber,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectShipperNameByCode" resultType="java.lang.String">
+        select kdn_logistics_name
+        from hkpsi_kdn_logistics
+        where kdn_logistics_code = #{shipperCode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getLogisticsIdCodeList" resultType="com.kintexgroup.hkpsi.information.model.KdnLogisticsIdName">
+        select kdn_logistics_id as kdnLogisticsId, kdn_logistics_name as kdnLogisticsName
+        from hkpsi_kdn_logistics
+        where disabled = 0;
+    </select>
+
+    <update id="updateByLogisticsCode">
+        UPDATE hkpsi_logistics
+        <set>
+        kdn_logistics_msg=#{rs,jdbcType=VARCHAR}
+        </set>
+        WHERE logistics_number = #{shipperCode,jdbcType=VARCHAR}
+    </update>
+</mapper>

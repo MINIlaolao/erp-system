@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao接口-->
+<mapper namespace="com.kintexgroup.hkpsi.information.dao.ClientDao">
+    <!--@Table hkpsi_client-->
+    <resultMap id="client" type="com.kintexgroup.hkpsi.information.entity.ClientEntity">
+        <id column="client_id" jdbcType="INTEGER" property="id"/>
+        <result column="client_name" jdbcType="VARCHAR" property="name"/>
+        <result column="client_contact" jdbcType="VARCHAR" property="contact"/>
+        <result column="disabled" jdbcType="TINYINT" property="disabled" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+        <result column="updated_by" jdbcType="INTEGER" property="updatedBy" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Sat Feb 27 22:17:40 CST 2021.-->
+        client_id,
+        client_name,
+        client_contact,
+        disabled,
+        created_at,
+        created_by,
+        updated_at,
+        updated_by
+    </sql>
+<!--    <insert id="insert"-->
+<!--        parameterType="com.kintexgroup.hkpsi.information.entity.ClientEntity"-->
+<!--        keyColumn="id" keyProperty="id"-->
+<!--        useGeneratedKeys="true">-->
+<!--        INSERT INTO `hkpsi_client`-->
+<!--        <trim prefix="(" suffix=")">-->
+<!--            `name`,`contact`,-->
+<!--            <if test="disabled != null">-->
+<!--                `disabled`,-->
+<!--            </if>-->
+<!--            `created_by`,`updated_by`-->
+<!--        </trim>-->
+<!--        <trim prefix="VALUE (" suffix=")">-->
+<!--            #{name,jdbcType=VARCHAR},-->
+<!--            #{contact,jdbcType=VARCHAR},-->
+<!--            <if test="disabled != null">-->
+<!--                #{disabled,jdbcType=TINYINT},-->
+<!--            </if>-->
+<!--            #{createdBy,jdbcType=INTEGER},-->
+<!--            #{updatedBy,jdbcType=INTEGER}-->
+<!--        </trim>-->
+<!--    </insert>-->
+    
+    <select id="selectOneById" parameterType="java.lang.Integer" resultMap="client">
+        SELECT `client_id`,`client_name`,`client_contact`,`disabled` 
+        FROM `hkpsi_client` WHERE `client_id` = #{id,jdbcType=INTEGER} LIMIT 1
+    </select>
+    
+    <select id="selectBatch" parameterType="com.kintexgroup.hkpsi.information.model.ClientDTO" resultMap="client">
+        SELECT `client_id`,`client_name`,`client_contact`,`disabled`
+        FROM `hkpsi_client`
+        <where>
+            <if test="name != null and name != ''">
+              `client_name` LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="contact != null and contact != ''">
+             AND `client_contact` LIKE CONCAT('%',#{contact},'%')
+            </if>
+            <if test="disabled != null">
+             AND `disabled` =#{disabled,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+    
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM `hkpsi_client` WHERE `client_id` = #{id,jdbcType=INTEGER}
+    </delete>
+<!--    <update id="update" parameterType="com.kintexgroup.hkpsi.information.entity.ClientEntity">-->
+<!--        UPDATE `hkpsi_client`-->
+<!--        <set>-->
+<!--            <if test="name != null">-->
+<!--                `name`= #{name,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="contact != null">-->
+<!--                `contact`= #{contact,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="disabled != null">-->
+<!--                `disabled` = #{disabled,jdbcType=TINYINT},-->
+<!--            </if>-->
+<!--            `updated_by` = #{updatedBy,jdbcType=INTEGER}-->
+<!--        </set>-->
+<!--        WHERE id = #{id,jdbcType=INTEGER}-->
+<!--    </update>-->
+    <select id="check" parameterType="String"
+        resultType="java.lang.Boolean">
+        SELECT COUNT(*)
+        FROM `hkpsi_client`
+        WHERE `client_id` = #{name,jdbcType=VARCHAR} LIMIT 1
+    </select>
+<!--    -->
+<!--    <select id="selectNameById" resultType="java.lang.String">-->
+<!--        SELECT `client_name` FROM `hkpsi_client` WHERE `client_id` = #{id,jdbcType=INTEGER}-->
+<!--    </select>-->
+</mapper>

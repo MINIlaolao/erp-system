@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kintexgroup.hkpsi.information.dao.CarrierDao">
+    <resultMap id="carrier" type="com.kintexgroup.hkpsi.information.entity.Carrier">
+        <id property="id" column="carrier_id"/>
+        <result property="name" column="carrier_name"/>
+        <result property="region" column="carrier_region"/>
+        <result property="editable" column="editable"/>
+        <result property="disabled" column="disabled"/>
+    </resultMap>
+
+    <select id="selectOne" parameterType="java.lang.Integer" resultMap="carrier">
+        SELECT carrier_id, carrier_name, carrier_region, editable, disabled
+        FROM `hkpsi_carrier`
+        WHERE `carrier_id` = #{id,jdbcType=INTEGER} LIMIT 1
+    </select>
+
+    <select id="check" parameterType="String"
+        resultType="java.lang.Boolean">
+        SELECT count(*)
+        FROM `hkpsi_carrier`
+        WHERE `carrier_name` = #{name,jdbcType=VARCHAR}
+        AND `carrier_region` = #{region,jdbcType=VARCHAR}
+    </select>
+    <select id="selectMany" resultMap="carrier">
+        SELECT carrier_id,
+               carrier_name,
+               carrier_region,
+               editable,
+               disabled
+        FROM hkpsi_carrier
+    </select>
+
+    <delete id="deleteOne" parameterType="java.lang.Integer">
+        DELETE
+        FROM `hkpsi_carrier`
+        WHERE `carrier_id` = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert
+        id="insertOne"
+        keyColumn="carrier_id"
+        keyProperty="id"
+        parameterType="com.kintexgroup.hkpsi.information.entity.Carrier"
+        useGeneratedKeys="true"
+    >
+        INSERT INTO `hkpsi_carrier`
+        <trim prefix="(" suffix=")">
+            `carrier_name`, `carrier_region`,
+            <if test="disabled != null">
+                `disabled`,
+            </if>
+            `created_by`,`updated_by`
+        </trim>
+        <trim prefix="VALUE (" suffix=")">
+            #{name,jdbcType=VARCHAR},
+            #{region,jdbcType=VARCHAR},
+            <if test="disabled != null">
+                #{disabled,jdbcType=TINYINT},
+            </if>
+            #{createdBy,jdbcType=INTEGER},
+            #{updatedBy,jdbcType=INTEGER}
+        </trim>
+    </insert>
+
+    <update id="updateOne" parameterType="com.kintexgroup.hkpsi.information.entity.Carrier">
+        UPDATE `hkpsi_carrier`
+        <set>
+            <if test="name != null">
+                `carrier_name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="region != null">
+                `carrier_region` = #{region,jdbcType=VARCHAR},
+            </if>
+            <if test="disabled != null">
+                `disabled` = #{disabled,jdbcType=TINYINT},
+            </if>
+            `updated_by` = #{updatedBy,jdbcType=INTEGER}
+        </set>
+        WHERE `carrier_id` = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
